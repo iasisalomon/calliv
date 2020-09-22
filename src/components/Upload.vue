@@ -1,11 +1,11 @@
 <template>
-<div class="input-group mb-3">
+<div class="input-group">
   <div class="custom-file">
-    <input type="file" @change="uploadFile" class="custom-file-input" id="inputGroupFile02">
-    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" @change="uploadFileName">
+    <label class="custom-file-label" for="inputGroupFile04">{{filename}}</label>
   </div>
   <div class="input-group-append">
-    <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" @click="uploadFile">Subir</button>
   </div>
 </div>
 </template>
@@ -16,11 +16,13 @@ import Papa from 'papaparse';
     data() {
       return {
         csvdata:[],
+        filename:"Choose file"
       }
     },
     methods: {
-      uploadFile(e){
-        let file = e.target.files[0];
+      uploadFile(){
+        let element = document.getElementById('inputGroupFile04')
+        let file = element.files[0]
         Papa.parse(file, {
 	      complete: function(results) {
         console.log(results);
@@ -28,6 +30,11 @@ import Papa from 'papaparse';
         console.log (this.csvdata)
 	      }
         });
+        console.log (element)
+      },
+      uploadFileName(){
+        let element = document.getElementById('inputGroupFile04')
+        this.filename = element.files[0].name;
       }
       }
     }
