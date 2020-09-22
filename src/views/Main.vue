@@ -1,29 +1,25 @@
 <template>
-<div class="container">
-<Navbar/>
-<Upload/>
-</div>
+  <div class="container">
+    <Navbar />
+    <Upload />
+  </div>
 </template>
 
 <script>
-
-
-import Navbar from "../components/Navbar"
-import Upload from "../components/Upload"
+import Navbar from "../components/Navbar";
+import Upload from "../components/Upload";
 export default {
-      data() {
-      return {
-        csvdata:[],
-        filename:"Choose file"
-      }
-    },
+  data() {
+    return {
+      csvdata: [],
+      filename: "Choose file"
+    };
+  },
   components: {
     Navbar,
-    Upload 
+    Upload
   }
-}
+};
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -1,17 +1,16 @@
 <template>
-<div class="container">
-<Main></Main>
-</div>
+  <div class="container">
+    <Main></Main>
+  </div>
 </template>
 
 <script>
-import Main from "./views/Main"
+import Main from "./views/Main";
 export default {
   components: {
-    Main, 
+    Main
   }
-}
+};
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
