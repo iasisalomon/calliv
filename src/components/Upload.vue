@@ -28,10 +28,16 @@
 import Papa from "papaparse";
 
 export default {
+  props:{
+        csvdata: {
+          type:Array,
+        },
+      filename: {
+          type:String,
+        },
+  },
   data() {
     return {
-      csvdata: [],
-      filename: "Choose file"
     };
   },
   methods: {
