@@ -2,22 +2,26 @@
   <div class="container">
     <Navbar />
     <Upload />
+    <Table />
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Navbar";
 import Upload from "../components/Upload";
+import Table from "../components/Table";
+
 export default {
   data() {
     return {
       csvdata: [],
       filename: "Choose file"
-    };
+    }
   },
   components: {
     Navbar,
-    Upload
+    Upload,
+    Table
   }
 };
 </script>

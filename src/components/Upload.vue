@@ -9,7 +9,7 @@
         @change="uploadFileName"
       />
       <label class="custom-file-label" for="inputGroupFile04">{{
-        filename
+        filenameupdate
       }}</label>
     </div>
     <div class="input-group-append">
@@ -17,7 +17,7 @@
         class="btn btn-outline-secondary"
         type="button"
         id="inputGroupFileAddon04"
-        @click="uploadFile"
+        @click="updateCsv"
       >
         Subir
       </button>
@@ -38,24 +38,30 @@ export default {
   },
   data() {
     return {
-    };
+      csvupdate: [],
+      filenameupdate: "Choose file"
+    }
   },
-  methods: {
-    uploadFile() {
-      let element = document.getElementById("inputGroupFile04");
-      let file = element.files[0];
-      Papa.parse(file, {
-        complete: function(results) {
-          console.log(results);
-          this.csvdata = results.data;
-          console.log(this.csvdata);
-        }
-      });
-      console.log(element);
+  methods: {    
+    updateCsv(csvupdate, filenameupdate) {
+      this.$emit('change', csvupdate, filenameupdate);
     },
     uploadFileName() {
       let element = document.getElementById("inputGroupFile04");
-      this.filename = element.files[0].name;
+      this.filenameupdate = element.files[0].name;
+      let file = element.files[0];
+      Papa.parse(file, {
+        complete: function(results) {
+          this.csvupdate = results.data;
+          console.log(this.csvupdate);
+        }
+      });
+    },
+  },
+  computed: {
+    copyValues: ()=> {
+      this.csvupdate = this.csvdata
+      this.filename = this.filenameupdate
     }
   }
 };
