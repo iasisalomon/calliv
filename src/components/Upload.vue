@@ -17,7 +17,7 @@
         class="btn btn-outline-secondary"
         type="button"
         id="inputGroupFileAddon04"
-        @click="updateCsv"
+        @click="changeCsv"
       >
         Subir
       </button>
@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {    
-    updateCsv(csvupdate, filenameupdate) {
+    changeCsv(csvupdate, filenameupdate) {
       this.$emit('change', csvupdate, filenameupdate);
     },
     uploadFileName() {

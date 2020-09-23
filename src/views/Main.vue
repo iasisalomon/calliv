@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <Navbar />
-    <Upload />
+    <Upload v-on:change="(...args)=>(1234,...args)" />
     <Table />
+    <p> {{csvdata}} </p>
   </div>
 </template>
 
@@ -22,6 +23,11 @@ export default {
     Navbar,
     Upload,
     Table
+  },
+  methods:{
+    updateCsv: (el)=>{
+      console.log (el)
+    }
   }
 };
 </script>
