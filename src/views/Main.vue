@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <Navbar />
-    <Upload v-on:change="(...args)=>(1234,...args)" />
+    <Upload v-on:change="updateCsv($event)" />
     <Table />
-    <p> {{csvdata}} </p>
+    <p>{{ csvdata }}</p>
   </div>
 </template>
 
@@ -17,16 +17,16 @@ export default {
     return {
       csvdata: [],
       filename: "Choose file"
-    }
+    };
   },
   components: {
     Navbar,
     Upload,
     Table
   },
-  methods:{
-    updateCsv: (el)=>{
-      console.log (el)
+  methods: {
+    updateCsv: el => {
+      console.log(el);
     }
   }
 };

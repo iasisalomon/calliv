@@ -25,43 +25,43 @@
   </div>
 </template>
 <script>
-import Papa from "papaparse";
+// import Papa from "papaparse";
 
 export default {
-  props:{
-        csvdata: {
-          type:Array,
-        },
-      filename: {
-          type:String,
-        },
+  props: {
+    csvdata: {
+      type: Array
+    },
+    filename: {
+      type: String
+    }
   },
   data() {
     return {
       csvupdate: [],
       filenameupdate: "Choose file"
-    }
+    };
   },
-  methods: {    
-    changeCsv(csvupdate, filenameupdate) {
-      this.$emit('change', csvupdate, filenameupdate);
+  methods: {
+    changeCsv() {
+      //       Papa.parse(this.csvupdate, {
+      //       complete: function(results) {
+      //       this.csvupdate = results.data;
+      //     }
+      // });
+      this.$emit("change", [this.csvupdate, this.filenameupdate]);
     },
     uploadFileName() {
       let element = document.getElementById("inputGroupFile04");
       this.filenameupdate = element.files[0].name;
-      let file = element.files[0];
-      Papa.parse(file, {
-        complete: function(results) {
-          this.csvupdate = results.data;
-          console.log(this.csvupdate);
-        }
-      });
-    },
+      this.csvupdate = element.files[0];
+      this.$papa.parse(this.csvupdate);
+    }
   },
   computed: {
-    copyValues: ()=> {
-      this.csvupdate = this.csvdata
-      this.filename = this.filenameupdate
+    copyValues: () => {
+      this.csvupdate = this.csvdata;
+      this.filename = this.filenameupdate;
     }
   }
 };
