@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-// import Papa from "papaparse";
+import Papa from "papaparse";
 
 export default {
   props: {
@@ -44,18 +44,18 @@ export default {
   },
   methods: {
     changeCsv() {
-      //       Papa.parse(this.csvupdate, {
-      //       complete: function(results) {
-      //       this.csvupdate = results.data;
-      //     }
-      // });
       this.$emit("change", [this.csvupdate, this.filenameupdate]);
     },
-    uploadFileName() {
+    async uploadFileName() {
       let element = document.getElementById("inputGroupFile04");
       this.filenameupdate = element.files[0].name;
-      this.csvupdate = element.files[0];
-      this.$papa.parse(this.csvupdate);
+      let end = await Papa.parse(element.files[0], {
+        complete: results => {
+          console.log(results.data);
+        }
+      });
+      console.log(end);
+      this.csvupdate = end;
     }
   },
   computed: {
