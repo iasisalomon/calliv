@@ -9,7 +9,7 @@
         @input="parseFile"
       />
       <label class="custom-file-label" for="inputGroupFile04">
-        {{ filename }}
+        {{ csvFilenameUpdate }}
       </label>
     </div>
     <div class="input-group-append">
@@ -22,8 +22,6 @@
         Subir
       </button>
     </div>
-    <p>{{ csvdata }}</p>
-    <p>{{ filename }}</p>
   </div>
 </template>
 <script>
