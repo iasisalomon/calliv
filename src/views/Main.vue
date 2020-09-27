@@ -26,7 +26,8 @@ export default {
   },
   methods: {
     updateCsv: el => {
-      console.log(el);
+      console.log(el[1]);
+      this.filename = el[1]
     }
   }
 };

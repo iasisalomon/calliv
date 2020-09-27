@@ -22,7 +22,6 @@
         Subir
       </button>
     </div>
-          <p>{{csvupdate}}</p>
   </div>
 </template>
 <script>
