@@ -2,7 +2,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import VuePapaParse from 'vue-papa-parse'
+import VuePapaParse from "vue-papa-parse";
 
 //Bootstrap-Vue
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
@@ -11,7 +11,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 //Vue-use
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
-Vue.use(VuePapaParse)
+Vue.use(VuePapaParse);
 
 //Vues
 Vue.config.productionTip = false;

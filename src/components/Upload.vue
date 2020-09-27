@@ -6,22 +6,24 @@
         class="custom-file-input"
         id="inputGroupFile04"
         aria-describedby="inputGroupFileAddon04"
-        @change="uploadFileName"
+        @input="parseFile"
       />
-      <label class="custom-file-label" for="inputGroupFile04">{{
-        filenameupdate
-      }}</label>
+      <label class="custom-file-label" for="inputGroupFile04">
+        {{ filename }}
+      </label>
     </div>
     <div class="input-group-append">
       <button
         class="btn btn-outline-secondary"
         type="button"
         id="inputGroupFileAddon04"
-        @click="changeCsv"
+        @click="csvCSV"
       >
         Subir
       </button>
     </div>
+    <p>{{ csvdata }}</p>
+    <p>{{ filename }}</p>
   </div>
 </template>
 <script>
@@ -36,26 +38,22 @@ export default {
   },
   data() {
     return {
-      csvupdate: [1,2],
-      filenameupdate: "Choose file"
+      csvUpdate: [],
+      csvFilenameUpdate: "Choose File"
     };
   },
   methods: {
-    changeCsv() {
-      this.$emit('changeCSV', [this.csvupdate, this.filenameupdate]);
+    csvCSV: function () {
+      console.log (this.csvFilenameUpdate)
+      console.log (this.csvUpdate)
+      this.$emit('CSV', [this.csvFilenameUpdate, this.csvUpdate]);
     },
-    uploadFileName() {
+    parseFile: function() {
       let element = document.getElementById("inputGroupFile04");
-      this.filenameupdate = element.files[0].name;
+      this.csvFilenameUpdate = element.files[0].name
       this.$papa.parse(element.files[0], {
-        complete: (parsed)=> (this.csvupdate = parsed.data)
-      })
-    }
-  },
-  computed: {
-    copyValues: () => {
-      this.csvupdate = this.csvdata;
-      this.filename = this.filenameupdate;
+        complete: parsed => (this.csvUpdate = parsed.data)
+      });
     }
   }
 };
