@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     changeCsv() {
-      this.$emit("change", [this.csvupdate, this.filenameupdate]);
+      this.$emit('changeCSV', [this.csvupdate, this.filenameupdate]);
     },
     uploadFileName() {
       let element = document.getElementById("inputGroupFile04");

@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <Navbar />
-    <Upload v-on:change="updateCsv($event)" />
+    <Upload v-on:changeCSV="updateCsv($event)" />
     <Table />
-    <p>{{ csvdata }}</p>
   </div>
 </template>
 
@@ -17,7 +16,7 @@ export default {
     return {
       csvdata: [],
       filename: "Choose file"
-    };
+    }
   },
   components: {
     Navbar,
@@ -25,8 +24,8 @@ export default {
     Table
   },
   methods: {
-    updateCsv: el => {
-      console.log(el[1]);
+    updateCsv: function (el){
+      this.csvdata = el[0]
       this.filename = el[1]
     }
   }
