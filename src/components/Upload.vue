@@ -22,11 +22,10 @@
         Subir
       </button>
     </div>
+          <p>{{csvupdate}}</p>
   </div>
 </template>
 <script>
-import Papa from "papaparse";
-
 export default {
   props: {
     csvdata: {
@@ -38,7 +37,7 @@ export default {
   },
   data() {
     return {
-      csvupdate: [],
+      csvupdate: [1,2],
       filenameupdate: "Choose file"
     };
   },
@@ -46,16 +45,12 @@ export default {
     changeCsv() {
       this.$emit("change", [this.csvupdate, this.filenameupdate]);
     },
-    async uploadFileName() {
+    uploadFileName() {
       let element = document.getElementById("inputGroupFile04");
       this.filenameupdate = element.files[0].name;
-      let end = await Papa.parse(element.files[0], {
-        complete: results => {
-          console.log(results.data);
-        }
-      });
-      console.log(end);
-      this.csvupdate = end;
+      this.$papa.parse(element.files[0], {
+        complete: (parsed)=> (this.csvupdate = parsed.data)
+      })
     }
   },
   computed: {
