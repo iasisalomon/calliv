@@ -2,7 +2,7 @@
   <div class="container">
     <Navbar />
     <Upload :csvdata="csvdata" :filename="filename" @CSV='updateCSV($event)' />
-    <Table />
+    <Table  :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   data() {
     return {
       csvdata: [],
-      filename: "Choose file"
+      filename: "Choose file",
+      tableConfig:[],
     };
   },
   components: {
@@ -26,7 +27,9 @@ export default {
   methods: {
     updateCSV: function (el) {
     this.filename = el[0]
-    this.csvdata = el[1]
+    this.csvdata = el[1].slice(1 , el[1].length-1)
+    this.tableConfig = el[1].shift()
+    console.log (this.tableConfig)
     }
   }
 };
