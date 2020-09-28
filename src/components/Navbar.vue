@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">CALLIV</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,13 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" href="#"
-          >Home <span class="sr-only">(current)</span></a
+          >Cargar CSV <span class="sr-only">(current)</span></a
         >
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-          >Disabled</a
-        >
+        <a class="nav-link" href="#">Datos Procesados</a>
+        <a class="nav-link" href="#">Curvas</a>
       </div>
     </div>
   </nav>
