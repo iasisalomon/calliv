@@ -22,6 +22,16 @@
         Subir
       </button>
     </div>
+        <div class="input-group-append">
+      <button
+        class="btn btn-outline-info"
+        type="button"
+        id="inputGroupFileAddon04"
+        @click="shareData"
+      >
+        Procesar
+      </button>
+    </div>
   </div>
 </template>
 <script>
@@ -42,9 +52,10 @@ export default {
   },
   methods: {
     csvCSV: function () {
-      console.log (this.csvFilenameUpdate)
-      console.log (this.csvUpdate)
       this.$emit('CSV', [this.csvFilenameUpdate, this.csvUpdate]);
+    },
+    shareData: function () {
+      this.$emit('SD', true);
     },
     parseFile: function() {
       let element = document.getElementById("inputGroupFile04");
