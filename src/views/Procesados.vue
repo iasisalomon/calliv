@@ -2,6 +2,9 @@
   <div class="container">
     <Navbar />
      <Nav />
+  <div>
+    {{condensedWells}}
+  </div>
     <ProcessedTable :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
   </div>
 </template>
@@ -17,6 +20,7 @@ export default {
       csvdata: [],
       filename: [],
       tableConfig:[],
+      condensedWells:[],
     };
   },
   components: {
@@ -29,7 +33,10 @@ export default {
   created(){
     this.filename = this.$route.params.data[0]
     this.tableConfig = this.$route.params.data[1]
-    this.csvdata = this.$route.params.data[2]
+    this.csvdata = this.$route.params.data[2].sort()
+    this.condensedWells = this.csvdata.map((row)=>{
+      return row[2]
+    })
   }
 };
 </script>
