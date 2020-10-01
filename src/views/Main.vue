@@ -29,6 +29,11 @@ export default {
     this.filename = el[0]
     this.csvdata = el[1].slice(1 , el[1].length-1)
     this.tableConfig = el[1].shift()
+    this.csvdata = this.csvdata.map (el=>{
+      return el.map((e)=>{
+        return e.replace(/,/g, '.')
+      })
+    })
     },
   linkData: function(ele) {
     console.log(ele);
