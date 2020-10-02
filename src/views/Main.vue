@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <Navbar />
-    <Upload :csvdata="csvdata" :filename="filename" @CSV='updateCSV($event)'  @SD='linkData($event)'/>
-    <Table  :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
+    <Upload
+      :csvdata="csvdata"
+      :filename="filename"
+      @CSV="updateCSV($event)"
+      @SD="linkData($event)"
+    />
+    <Table :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
   </div>
 </template>
 
@@ -16,7 +21,7 @@ export default {
     return {
       csvdata: [],
       filename: "Choose file",
-      tableConfig:[],
+      tableConfig: []
     };
   },
   components: {
@@ -25,20 +30,23 @@ export default {
     Table
   },
   methods: {
-    updateCSV: function (el) {
-    this.filename = el[0]
-    this.csvdata = el[1].slice(1 , el[1].length-1)
-    this.tableConfig = el[1].shift()
-    this.csvdata = this.csvdata.map (el=>{
-      return el.map((e)=>{
-        return e.replace(/,/g, '.')
-      })
-    })
+    updateCSV: function(el) {
+      this.filename = el[0];
+      this.csvdata = el[1].slice(1, el[1].length - 1);
+      this.tableConfig = el[1].shift();
+      this.csvdata = this.csvdata.map(el => {
+        return el.map(e => {
+          return e.replace(/,/g, ".");
+        });
+      });
     },
-  linkData: function(ele) {
-    console.log(ele);
-    this.$router.push({name: "Procesados", params: {data: [this.filename, this.tableConfig, this.csvdata,]}})
-  }
+    linkData: function(ele) {
+      console.log(ele);
+      this.$router.push({
+        name: "Procesados",
+        params: { data: [this.filename, this.tableConfig, this.csvdata] }
+      });
+    }
   }
 };
 </script>

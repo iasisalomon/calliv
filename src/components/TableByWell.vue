@@ -1,16 +1,20 @@
 <template>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th v-for="(header, ind) in this.tableConfig" :key="ind" scope="col"> {{ header }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(row, idx) in csvdata" :key='idx'>
-      <td v-for="(obj, i) in tableConfig" :key='i'> {{ row[i] }} </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th v-for="(header, ind) in adjustedHeader" :key="ind" scope="col">
+          {{ header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(row, idx) in Wells" :key="idx">
+        <th>{{ row }}</th>
+        <td v-for="(obj, i) in rawAdjusted[idx]" :key="i">{{ obj }}</td>
+        <td>{{ adjustedAverage[idx] }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -24,12 +28,25 @@ export default {
     },
     filename: {
       type: String
-    }
+    },
+    groupByCSV: {
+      type: Array
+    },
+    adjustedHeader: {
+      type: Array
+    },
+    Wells: {
+      type: Array
+    },
+    rawAdjusted: {
+      type: Array
+    },
+    adjustedAverage: {
+      type: Array
+    },
   },
   data() {
-    return {
-      
-    };
+    return {};
   }
 };
 </script>

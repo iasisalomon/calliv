@@ -2,34 +2,22 @@
   <div class="container">
     <Navbar />
     <Nav />
-    <div>
-      <!-- <table class="table table-striped">
-        <thead>
-          <tr>
-            <th v-for="(header, ind) in adjustedHeader" :key="ind" scope="col">
-              {{ header }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, idx) in adjustedResult" :key="idx">
-            <td>{{ idx }}</td>
-            <td v-for="(obj, i) in tableConfig" :key="i">{{ row[i] }}</td>
-          </tr>
-        </tbody>
-      </table> -->
-      {{ adjustedResultLecture }}
-    </div>
     <ProcessedTable
+      v-show="true"
       :csvdata="csvdata"
       :filename="filename"
       :tableConfig="tableConfig"
     />
     <TableByWell
+      v-show="true"
       :csvdata="csvdata"
-      :filename="filename"
       :tableConfig="tableConfig"
-      :adjustedResult="adjustedResult"
+      :filename="filename"
+      :groupByCSV="groupByCSV"
+      :adjustedHeader="adjustedHeader"
+      :Wells="Wells"
+      :rawAdjusted="rawAdjusted"
+      :adjustedAverage="adjustedAverage"
     />
   </div>
 </template>
@@ -53,7 +41,6 @@ export default {
       csvdata: [],
       filename: [],
       tableConfig: [],
-      condensedWells: [],
       adjustedHeader: [
         "Well",
         "Lecture 1",
@@ -61,8 +48,10 @@ export default {
         "Lecture 3",
         "Average",
       ],
-      adjustedResult: [],
-      adjustedResultLecture: [],
+      Wells: [],
+      groupByCSV: [],
+      rawAdjusted: [],
+      adjustedAverage: [],
     };
   },
   components: {
@@ -76,17 +65,36 @@ export default {
     this.filename = this.$route.params.data[0];
     this.tableConfig = this.$route.params.data[1];
     this.csvdata = this.$route.params.data[2].sort();
-    this.condensedWells = this.csvdata.map((row) => {
-      return row[0];
+    this.groupByCSV = groupBy(this.csvdata, 0);
+    this.Wells = Object.keys(this.groupByCSV);
+    this.rawAdjusted = Object.entries(this.groupByCSV).map((e) => {
+      return e[1].map((f) => {
+        return f[2] - f[3];
+      });
     });
-    this.condensedWells = [...new Set(this.condensedWells)];
-    this.adjustedResult = groupBy(this.csvdata, 0);
-    this.adjustedResultLecture = Object.values(this.adjustedResult)
-    this.adjustedResultLecture = this.adjustedResultLecture.map (el=>{
-      return el.map ((e)=>{
-        return  e[2]
-      })
-    })
+    this.adjustedAverage = this.rawAdjusted.map((e) => {
+      return (
+        e.reduce((a, b) => {
+          return a + b;
+        }) / e.length
+      );
+    });
+
+    // this.adjustedResultCompact = Object.keys(this.adjustedResult)
+    // this.adjustedResultLecture = Object.values(this.adjustedResult);
+    // this.adjustedResultLecture = this.adjustedResultLecture.map((el) => {
+    //   return el.map((e) => {
+    //     return Number(e[2]) - Number(e[3]);
+    //   });
+    // });
+    // this.adjustedResultCompact.push (this.adjustedResultLecture.map((e)=>{
+    //   return e
+    // }))
+    // this.adjustedResultAverage = this.adjustedResultLecture.map((e) => {
+    //   return e.reduce((a, b) => {
+    //     return a + b / e.length + 1;
+    //   });
+    // });
   },
 };
 </script>

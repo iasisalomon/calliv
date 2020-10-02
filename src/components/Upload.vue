@@ -22,7 +22,7 @@
         Subir
       </button>
     </div>
-        <div class="input-group-append">
+    <div class="input-group-append">
       <button
         class="btn btn-outline-info"
         type="button"
@@ -51,15 +51,15 @@ export default {
     };
   },
   methods: {
-    csvCSV: function () {
-      this.$emit('CSV', [this.csvFilenameUpdate, this.csvUpdate]);
+    csvCSV: function() {
+      this.$emit("CSV", [this.csvFilenameUpdate, this.csvUpdate]);
     },
-    shareData: function () {
-      this.$emit('SD', true);
+    shareData: function() {
+      this.$emit("SD", true);
     },
     parseFile: function() {
       let element = document.getElementById("inputGroupFile04");
-      this.csvFilenameUpdate = element.files[0].name
+      this.csvFilenameUpdate = element.files[0].name;
       this.$papa.parse(element.files[0], {
         complete: parsed => (this.csvUpdate = parsed.data)
       });
