@@ -21,3 +21,15 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount("#app");
+
+// Event Hubs
+const eventHub = new Vue() 
+
+// Distribute to components using global mixin
+Vue.mixin({
+    data: function () {
+        return {
+            eventHub: eventHub
+        }
+    }
+})

@@ -13,7 +13,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      datos: false,
+      neta: false,
+      link:false,
+    };
+  },
+  methods: {
+    datosEmit: function() {
+      this.$emit("datosUpdate", [true, false, false]);
+    },
+        netaEmit: function() {
+      this.$emit("netaUpdate", [false, true, false]);
+    },
+        Emit: function() {
+      this.$emit("linkUpdate", [false, false, true]);
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss"></style>
