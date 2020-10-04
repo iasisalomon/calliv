@@ -1,15 +1,20 @@
 <template>
   <div class="container">
     <Navbar />
-    <Nav />
+    <Nav
+    :showactive='showactive'
+    @datosUpdate='datosUpdate($event)'
+    @netaUpdate='netaUpdate($event)'
+    @linkUpdate='linkUpdate($event)'
+    />
     <ProcessedTable
-      v-show="true"
+      v-show="showactive[1]"
       :csvdata="csvdata"
       :filename="filename"
       :tableConfig="tableConfig"
     />
     <TableByWell
-      v-show="true"
+      v-show="showactive[2]"
       :csvdata="csvdata"
       :tableConfig="tableConfig"
       :filename="filename"
@@ -19,6 +24,9 @@
       :rawAdjusted="rawAdjusted"
       :adjustedAverage="adjustedAverage"
     />
+    <div>
+      {{showactive}}
+    </div>
   </div>
 </template>
 
@@ -38,6 +46,7 @@ var groupBy = function(xs, key) {
 export default {
   data() {
     return {
+      showactive:[false, false, false],
       csvdata: [],
       filename: [],
       tableConfig: [],
@@ -60,8 +69,13 @@ export default {
     TableByWell,
     Nav,
   },
-  methods: {},
-  created() {
+  methods: {
+    datosUpdate: function (el){
+      console.log (el)
+      this.showactive = el
+    }
+  },
+  created(){
     this.filename = this.$route.params.data[0];
     this.tableConfig = this.$route.params.data[1];
     this.csvdata = this.$route.params.data[2].sort();
@@ -79,22 +93,6 @@ export default {
         }) / e.length
       );
     });
-
-    // this.adjustedResultCompact = Object.keys(this.adjustedResult)
-    // this.adjustedResultLecture = Object.values(this.adjustedResult);
-    // this.adjustedResultLecture = this.adjustedResultLecture.map((el) => {
-    //   return el.map((e) => {
-    //     return Number(e[2]) - Number(e[3]);
-    //   });
-    // });
-    // this.adjustedResultCompact.push (this.adjustedResultLecture.map((e)=>{
-    //   return e
-    // }))
-    // this.adjustedResultAverage = this.adjustedResultLecture.map((e) => {
-    //   return e.reduce((a, b) => {
-    //     return a + b / e.length + 1;
-    //   });
-    // });
   },
 };
 </script>

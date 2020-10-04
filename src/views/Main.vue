@@ -40,8 +40,7 @@ export default {
         });
       });
     },
-    linkData: function(ele) {
-      console.log(ele);
+    linkData: function() {
       this.$router.push({
         name: "Procesados",
         params: { data: [this.filename, this.tableConfig, this.csvdata] }
