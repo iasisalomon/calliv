@@ -1,8 +1,6 @@
 <template>
   <table class="table table-striped">
     <thead>
-      <div> {{ tableConfig }} </div>
-      <div> {{ csvdata }} </div>
       <tr>
         <th v-for="(header, ind) in this.tableConfig" :key="ind" scope="col">
           {{ header }}
