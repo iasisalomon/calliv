@@ -43,7 +43,7 @@ export default {
   methods: {
     datosEmit: function() {
       console.log(Math.random())
-      this.$emit("datosUpdate", [true, false, false]);
+      this.$root.$emit("datosUpdate", [true, false, false]);
     },
     netaEmit: function() {
       this.$emit("netaUpdate", [false, true, false]);

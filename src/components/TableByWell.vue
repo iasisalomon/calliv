@@ -26,9 +26,6 @@ export default {
     tableConfig: {
       type: Array
     },
-    filename: {
-      type: String
-    },
     groupByCSV: {
       type: Array
     },

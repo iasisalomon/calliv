@@ -27,6 +27,9 @@
     <div>
       {{showactive}}
     </div>
+        <div>
+      {{ filename }}
+    </div>
   </div>
 </template>
 
@@ -46,6 +49,7 @@ var groupBy = function(xs, key) {
 export default {
   data() {
     return {
+      loadedtoken:0,
       showactive:[false, false, false],
       csvdata: [],
       filename: [],
@@ -70,12 +74,14 @@ export default {
     Nav,
   },
   methods: {
-    datosUpdate: function (el){
-      console.log (el)
-      this.showactive = el
-    }
+  },
+  beforeCreate(){
+  if (this.filename != undefined){
+    this.loadedtoken = 1;
+  }
   },
   created(){
+    if(this.loadedtoken === 1){
     this.filename = this.$route.params.data[0];
     this.tableConfig = this.$route.params.data[1];
     this.csvdata = this.$route.params.data[2].sort();
@@ -93,7 +99,13 @@ export default {
         }) / e.length
       );
     });
+    }
   },
+mounted() {
+    this.$root.$on('datosUpdate', data => {
+        this.showactive = data
+    });
+}
 };
 </script>
 

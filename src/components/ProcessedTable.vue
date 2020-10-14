@@ -24,9 +24,6 @@ export default {
     tableConfig: {
       type: Array
     },
-    filename: {
-      type: String
-    }
   },
   data() {
     return {};
