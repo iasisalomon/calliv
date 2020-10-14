@@ -26,9 +26,6 @@ export default {
     tableConfig: {
       type: Array
     },
-    groupByCSV: {
-      type: Array
-    },
     adjustedHeader: {
       type: Array
     },

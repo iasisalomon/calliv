@@ -8,16 +8,14 @@
     @linkUpdate='linkUpdate($event)'
     />
     <ProcessedTable
-      v-show="showactive[1]"
+      v-show="showactive[0]"
       :csvdata="csvdata"
-      :filename="filename"
       :tableConfig="tableConfig"
     />
     <TableByWell
       v-show="showactive[2]"
       :csvdata="csvdata"
       :tableConfig="tableConfig"
-      :filename="filename"
       :groupByCSV="groupByCSV"
       :adjustedHeader="adjustedHeader"
       :Wells="Wells"
@@ -25,10 +23,10 @@
       :adjustedAverage="adjustedAverage"
     />
     <div>
-      {{showactive}}
+      {{ showactive }}
     </div>
         <div>
-      {{ filename }}
+      {{ showactive[0] }}
     </div>
   </div>
 </template>
@@ -75,17 +73,14 @@ export default {
   },
   methods: {
   },
-  beforeCreate(){
-  if (this.filename != undefined){
-    this.loadedtoken = 1;
-  }
-  },
   created(){
-    if(this.loadedtoken === 1){
+    if (this.$route.params.data != undefined){
     this.filename = this.$route.params.data[0];
     this.tableConfig = this.$route.params.data[1];
     this.csvdata = this.$route.params.data[2].sort();
+    //console.log(this.$route.params.data[2]);
     this.groupByCSV = groupBy(this.csvdata, 0);
+    //console.log(this.groupByCSV)
     this.Wells = Object.keys(this.groupByCSV);
     this.rawAdjusted = Object.entries(this.groupByCSV).map((e) => {
       return e[1].map((f) => {

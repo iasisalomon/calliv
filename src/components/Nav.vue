@@ -24,9 +24,6 @@
         >Link
       </a>
     </li>
-    <li>
-      {{ datos }}
-    </li>
   </ul>
 </template>
 
