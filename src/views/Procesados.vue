@@ -7,6 +7,7 @@
       @netaUpdate="netaUpdate($event)"
       @linkUpdate="linkUpdate($event)"
     />
+    <h1>{{filename}}</h1>
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"
@@ -106,8 +107,17 @@ export default {
       );
     } else {
       console.log("hi");
-      console.log(JSON.parse(localStorage.getItem("csvdata")));
+      //console.log(JSON.parse(localStorage.getItem("csvdata")));
       this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
+      this.filename = JSON.parse(localStorage.getItem("filename"));
+      this.tableConfig = JSON.parse(localStorage.getItem("tableConfig"));
+      this.groupByCSV = JSON.parse(localStorage.getItem("groupByCSV"));
+      this.Wells = JSON.parse(localStorage.getItem("Wells"));
+      this.rawAdjusted = JSON.parse(localStorage.getItem("rawAdjusted"));
+      this.adjustedAverage = JSON.parse(
+        localStorage.getItem("adjustedAverage")
+      );
+      // hacer emit de evento para pasar datos pa arriba
     }
   },
   mounted() {

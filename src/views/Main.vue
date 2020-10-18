@@ -7,6 +7,7 @@
       @CSV="updateCSV($event)"
       @SD="linkData($event)"
     />
+    <h1>{{filename}}</h1>
     <Table :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
   </div>
 </template>
@@ -41,14 +42,31 @@ export default {
       });
     },
     linkData: function() {
-      if (localStorage.getItem('filename') != ''){localStorage.setItem("filename", JSON.stringify(this.filename));}
-      if (localStorage.getItem('csvdata') != ''){localStorage.setItem("csvdata", JSON.stringify(this.csvdata));} 
-      if (localStorage.getItem('tableConfig') != ''){localStorage.setItem("tableConfig", JSON.stringify(this.tableConfig));}
+      if (localStorage.getItem("filename") != "") {
+        localStorage.setItem("filename", JSON.stringify(this.filename));
+      }
+      if (localStorage.getItem("csvdata") != "") {
+        localStorage.setItem("csvdata", JSON.stringify(this.csvdata));
+      }
+      if (localStorage.getItem("tableConfig") != "") {
+        localStorage.setItem("tableConfig", JSON.stringify(this.tableConfig));
+      }
       this.$router.push({
         name: "Procesados",
         params: { data: [this.filename, this.tableConfig, this.csvdata] }
       });
     }
+  },
+  mounted() {
+     if (localStorage.getItem("filename") != "") {
+        this.filename = JSON.parse(localStorage.getItem("filename"));
+      }
+      if (localStorage.getItem("csvdata") != "") {
+       this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
+      }
+      if (localStorage.getItem("tableConfig") != "") {
+        this.tableConfig = JSON.parse(localStorage.getItem("tableConfig"));
+      } 
   }
 };
 </script>
