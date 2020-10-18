@@ -37,7 +37,7 @@ export default {
     },
     adjustedAverage: {
       type: Array
-    },
+    }
   },
   data() {
     return {};

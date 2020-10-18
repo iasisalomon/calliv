@@ -71,18 +71,28 @@ export default {
   methods: {},
   created() {
     if (this.$route.params.data != undefined) {
+      //file handshake
       this.filename = this.$route.params.data[0];
       this.tableConfig = this.$route.params.data[1];
+      // sort and storage csv
       this.csvdata = this.$route.params.data[2].sort();
+      localStorage.setItem("csvdata", JSON.stringify(this.csvdata));
       //console.log(this.$route.params.data[2]);
+      // sort and storage group by
       this.groupByCSV = groupBy(this.csvdata, 0);
+      localStorage.setItem("groupByCSV", JSON.stringify(this.groupByCSV));
       //console.log(this.groupByCSV)
+      //sort and storage wells
       this.Wells = Object.keys(this.groupByCSV);
+      localStorage.setItem("Wells", JSON.stringify(this.Wells));
+      //sort and storage raw adjusted values
       this.rawAdjusted = Object.entries(this.groupByCSV).map(e => {
         return e[1].map(f => {
           return f[2] - f[3];
         });
       });
+      localStorage.setItem("rawAdjusted", JSON.stringify(this.rawAdjusted));
+      //sort and storage averages
       this.adjustedAverage = this.rawAdjusted.map(e => {
         return (
           e.reduce((a, b) => {
@@ -90,6 +100,14 @@ export default {
           }) / e.length
         );
       });
+      localStorage.setItem(
+        "adjustedAverage",
+        JSON.stringify(this.adjustedAverage)
+      );
+    } else {
+      console.log("hi");
+      console.log(JSON.parse(localStorage.getItem("csvdata")));
+      this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
     }
   },
   mounted() {

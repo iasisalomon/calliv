@@ -23,7 +23,7 @@ export default {
     },
     tableConfig: {
       type: Array
-    },
+    }
   },
   data() {
     return {};
