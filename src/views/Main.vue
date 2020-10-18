@@ -41,6 +41,9 @@ export default {
       });
     },
     linkData: function() {
+      localStorage.setItem('filename', JSON.stringify(this.filename))
+      localStorage.setItem('csvdata', JSON.stringify(this.csvdata))
+      localStorage.setItem('tableConfig', JSON.stringify(this.tableConfig))
       this.$router.push({
         name: "Procesados",
         params: { data: [this.filename, this.tableConfig, this.csvdata] }

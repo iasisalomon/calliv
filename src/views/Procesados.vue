@@ -2,10 +2,10 @@
   <div class="container">
     <Navbar />
     <Nav
-    :showactive='showactive'
-    @datosUpdate='datosUpdate($event)'
-    @netaUpdate='netaUpdate($event)'
-    @linkUpdate='linkUpdate($event)'
+      :showactive="showactive"
+      @datosUpdate="datosUpdate($event)"
+      @netaUpdate="netaUpdate($event)"
+      @linkUpdate="linkUpdate($event)"
     />
     <ProcessedTable
       v-show="showactive[0]"
@@ -13,7 +13,7 @@
       :tableConfig="tableConfig"
     />
     <TableByWell
-      v-show="showactive[2]"
+      v-show="showactive[1]"
       :csvdata="csvdata"
       :tableConfig="tableConfig"
       :groupByCSV="groupByCSV"
@@ -22,12 +22,9 @@
       :rawAdjusted="rawAdjusted"
       :adjustedAverage="adjustedAverage"
     />
-    <div>
-      {{ showactive }}
-    </div>
-        <div>
-      {{ showactive[0] }}
-    </div>
+    <div>showactive {{ showactive }}</div>
+    <div>showactive0 {{ showactive[0] }}</div>
+    <div>table config {{ tableConfig }}</div>
   </div>
 </template>
 
@@ -47,8 +44,8 @@ var groupBy = function(xs, key) {
 export default {
   data() {
     return {
-      loadedtoken:0,
-      showactive:[false, false, false],
+      loadedtoken: 0,
+      showactive: [true, false, false],
       csvdata: [],
       filename: [],
       tableConfig: [],
@@ -57,50 +54,53 @@ export default {
         "Lecture 1",
         "Lecture 2",
         "Lecture 3",
-        "Average",
+        "Average"
       ],
       Wells: [],
       groupByCSV: [],
       rawAdjusted: [],
-      adjustedAverage: [],
+      adjustedAverage: []
     };
   },
   components: {
     Navbar,
     ProcessedTable,
     TableByWell,
-    Nav,
+    Nav
   },
-  methods: {
-  },
-  created(){
-    if (this.$route.params.data != undefined){
-    this.filename = this.$route.params.data[0];
-    this.tableConfig = this.$route.params.data[1];
-    this.csvdata = this.$route.params.data[2].sort();
-    //console.log(this.$route.params.data[2]);
-    this.groupByCSV = groupBy(this.csvdata, 0);
-    //console.log(this.groupByCSV)
-    this.Wells = Object.keys(this.groupByCSV);
-    this.rawAdjusted = Object.entries(this.groupByCSV).map((e) => {
-      return e[1].map((f) => {
-        return f[2] - f[3];
+  methods: {},
+  created() {
+    if (this.$route.params.data != undefined) {
+      this.filename = this.$route.params.data[0];
+      this.tableConfig = this.$route.params.data[1];
+      this.csvdata = this.$route.params.data[2].sort();
+      //console.log(this.$route.params.data[2]);
+      this.groupByCSV = groupBy(this.csvdata, 0);
+      //console.log(this.groupByCSV)
+      this.Wells = Object.keys(this.groupByCSV);
+      this.rawAdjusted = Object.entries(this.groupByCSV).map(e => {
+        return e[1].map(f => {
+          return f[2] - f[3];
+        });
       });
-    });
-    this.adjustedAverage = this.rawAdjusted.map((e) => {
-      return (
-        e.reduce((a, b) => {
-          return a + b;
-        }) / e.length
-      );
-    });
+      this.adjustedAverage = this.rawAdjusted.map(e => {
+        return (
+          e.reduce((a, b) => {
+            return a + b;
+          }) / e.length
+        );
+      });
     }
   },
-mounted() {
-    this.$root.$on('datosUpdate', data => {
-        this.showactive = data
+  mounted() {
+    this.$root.$on("datosUpdate", data => {
+      this.showactive = data[0];
     });
-}
+
+    this.$root.$on("netaUpdate", data => {
+      this.showactive = data[0];
+    });
+  }
 };
 </script>
 
