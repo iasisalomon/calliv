@@ -7,7 +7,7 @@
       @netaUpdate="netaUpdate($event)"
       @linkUpdate="linkUpdate($event)"
     />
-    <h1>{{filename}}</h1>
+    <h1>{{ filename }}</h1>
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"

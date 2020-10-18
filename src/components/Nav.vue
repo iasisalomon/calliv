@@ -1,17 +1,23 @@
 <template>
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <a :class="{ 'nav-link': true, active: aktiv[0] }" @click="datosEmit"
+      <a
+        :class="{ 'nav-link': true, active: aktiv[0] }"
+        @click="datosEmit"
+        href="#"
         >Datos Ordenados</a
       >
     </li>
     <li class="nav-item">
-      <a :class="{ 'nav-link': true, active: aktiv[1] }" @click="netaEmit"
+      <a
+        :class="{ 'nav-link': true, active: aktiv[1] }"
+        @click="netaEmit"
+        href="#"
         >Fluorescencia Neta</a
       >
     </li>
     <li class="nav-item">
-      <a :class="{ 'nav-link': true, active: aktiv[2] }">Link </a>
+      <a :class="{ 'nav-link': true, active: aktiv[2] }" href="#">Link </a>
     </li>
     <li class="btn-danger">aktiv {{ aktiv }}</li>
     <li class="btn-danger">show NAV {{ showactive }}</li>

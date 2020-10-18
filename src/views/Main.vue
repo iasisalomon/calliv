@@ -7,7 +7,7 @@
       @CSV="updateCSV($event)"
       @SD="linkData($event)"
     />
-    <h1>{{filename}}</h1>
+    <h1>{{ filename }}</h1>
     <Table :csvdata="csvdata" :filename="filename" :tableConfig="tableConfig" />
   </div>
 </template>
@@ -58,15 +58,15 @@ export default {
     }
   },
   mounted() {
-     if (localStorage.getItem("filename") != "") {
-        this.filename = JSON.parse(localStorage.getItem("filename"));
-      }
-      if (localStorage.getItem("csvdata") != "") {
-       this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
-      }
-      if (localStorage.getItem("tableConfig") != "") {
-        this.tableConfig = JSON.parse(localStorage.getItem("tableConfig"));
-      } 
+    if (localStorage.getItem("filename") != "") {
+      this.filename = JSON.parse(localStorage.getItem("filename"));
+    }
+    if (localStorage.getItem("csvdata") != "") {
+      this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
+    }
+    if (localStorage.getItem("tableConfig") != "") {
+      this.tableConfig = JSON.parse(localStorage.getItem("tableConfig"));
+    }
   }
 };
 </script>
