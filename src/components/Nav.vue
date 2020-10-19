@@ -17,11 +17,8 @@
       >
     </li>
     <li class="nav-item">
-      <a :class="{ 'nav-link': true, active: aktiv[2] }" href="#">Link </a>
+      <a :class="{ 'nav-link': true, active: aktiv[2] }" href="#">Matriz Nativa </a>
     </li>
-    <li class="btn-danger">aktiv {{ aktiv }}</li>
-    <li class="btn-danger">show NAV {{ showactive }}</li>
-    <li class="btn-danger">TOF {{ tof }}</li>
   </ul>
 </template>
 

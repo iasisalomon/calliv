@@ -8,6 +8,9 @@
       @linkUpdate="linkUpdate($event)"
     />
     <h1>{{ filename }}</h1>
+    <div>{{ WellsUniqueCols }}</div>
+    <div>{{ WellsUniqueRows }}</div>
+    <div>{{ adjustedAverage }}</div>
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"
@@ -23,9 +26,6 @@
       :rawAdjusted="rawAdjusted"
       :adjustedAverage="adjustedAverage"
     />
-    <div>showactive {{ showactive }}</div>
-    <div>showactive0 {{ showactive[0] }}</div>
-    <div>table config {{ tableConfig }}</div>
   </div>
 </template>
 
@@ -45,6 +45,7 @@ var groupBy = function(xs, key) {
 export default {
   data() {
     return {
+      /*** DATOS ORDENADOS Y FLUORESCENCIA NETA ***/
       loadedtoken: 0,
       showactive: [true, false, false],
       csvdata: [],
@@ -60,7 +61,10 @@ export default {
       Wells: [],
       groupByCSV: [],
       rawAdjusted: [],
-      adjustedAverage: []
+      adjustedAverage: [],
+      /*** MATRICES ***/
+      WellsUniqueRows: [],
+      WellsUniqueCols: [],
     };
   },
   components: {
@@ -71,6 +75,7 @@ export default {
   },
   methods: {},
   created() {
+    /*** DATOS ORDENADOS Y FLUORESCENCIA NETA ***/
     if (this.$route.params.data != undefined) {
       //file handshake
       this.filename = this.$route.params.data[0];
@@ -105,8 +110,9 @@ export default {
         "adjustedAverage",
         JSON.stringify(this.adjustedAverage)
       );
+      /*** MATRICES ***/
     } else {
-      console.log("hi");
+      console.log("TRAJE LOS DATOS DEL LOCAL STORAGE");
       //console.log(JSON.parse(localStorage.getItem("csvdata")));
       this.csvdata = JSON.parse(localStorage.getItem("csvdata")).sort();
       this.filename = JSON.parse(localStorage.getItem("filename"));
@@ -117,8 +123,18 @@ export default {
       this.adjustedAverage = JSON.parse(
         localStorage.getItem("adjustedAverage")
       );
-      // hacer emit de evento para pasar datos pa arriba
     }
+
+    /*** MATRICES ***/
+    this.WellsUniqueRows = this.Wells.map((el) => {
+      return el.replace(/[^a-zA-Z]/, "")
+    });
+    this.WellsUniqueRows =  [...new Set(this.WellsUniqueRows)];
+    this.WellsUniqueCols = this.Wells.map((el) => {
+      return el.replace(/[a-zA-Z]/, "")
+    });
+    this.WellsUniqueCols =  [...new Set(this.WellsUniqueCols)];
+
   },
   mounted() {
     this.$root.$on("datosUpdate", data => {
