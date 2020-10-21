@@ -11,6 +11,7 @@
     "@tensorflow/tfjs": "^2.4.0",
     "bootstrap-vue": "^2.17.3",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.20",
     "p5": "^1.1.9",
     "vue": "^2.6.11",
     "vue-papa-parse": "^2.0.0",

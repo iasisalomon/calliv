@@ -10,7 +10,7 @@
     <h1>{{ filename }}</h1>
     <div>{{ WellsUniqueCols }}</div>
     <div>{{ WellsUniqueRows }}</div>
-    <div>{{ adjustedAverage }}</div>
+    <div>{{ adjustedAverageBy4 }}</div>
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"
@@ -26,14 +26,22 @@
       :rawAdjusted="rawAdjusted"
       :adjustedAverage="adjustedAverage"
     />
+    <Matriz
+      v-show="showactive[2]"
+      :WellsUniqueCols="WellsUniqueCols"
+      :WellsUniqueRows="WellsUniqueRows"
+      :adjustedAverageBy4="adjustedAverageBy4"
+    />
   </div>
 </template>
 
 <script>
+import _ from "lodash";
 import Navbar from "../components/Navbar";
 import Nav from "../components/Nav";
 import ProcessedTable from "../components/ProcessedTable";
 import TableByWell from "../components/TableByWell";
+import Matriz from "../components/Matriz";
 
 var groupBy = function(xs, key) {
   return xs.reduce(function(rv, x) {
@@ -65,13 +73,15 @@ export default {
       /*** MATRICES ***/
       WellsUniqueRows: [],
       WellsUniqueCols: [],
+      adjustedAverageBy4: []
     };
   },
   components: {
     Navbar,
     ProcessedTable,
     TableByWell,
-    Nav
+    Nav,
+    Matriz
   },
   methods: {},
   created() {
@@ -126,15 +136,17 @@ export default {
     }
 
     /*** MATRICES ***/
-    this.WellsUniqueRows = this.Wells.map((el) => {
-      return el.replace(/[^a-zA-Z]/, "")
+    this.WellsUniqueRows = this.Wells.map(el => {
+      return el.replace(/[^a-zA-Z]/, "");
     });
-    this.WellsUniqueRows =  [...new Set(this.WellsUniqueRows)];
-    this.WellsUniqueCols = this.Wells.map((el) => {
-      return el.replace(/[a-zA-Z]/, "")
+    this.WellsUniqueRows = [...new Set(this.WellsUniqueRows)];
+    this.WellsUniqueCols = this.Wells.map(el => {
+      return el.replace(/[a-zA-Z]/, "");
     });
-    this.WellsUniqueCols =  [...new Set(this.WellsUniqueCols)];
-
+    this.WellsUniqueCols.unshift("Titulo");
+    this.WellsUniqueCols = [...new Set(this.WellsUniqueCols)];
+    this.adjustedAverageBy4 = _.chunk(this.adjustedAverage, [4]);
+    /*** MATRICES ***/
   },
   mounted() {
     this.$root.$on("datosUpdate", data => {
@@ -142,6 +154,10 @@ export default {
     });
 
     this.$root.$on("netaUpdate", data => {
+      this.showactive = data[0];
+    });
+
+    this.$root.$on("matrizNativaUpdate", data => {
       this.showactive = data[0];
     });
   }

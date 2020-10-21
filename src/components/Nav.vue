@@ -17,7 +17,12 @@
       >
     </li>
     <li class="nav-item">
-      <a :class="{ 'nav-link': true, active: aktiv[2] }" href="#">Matriz Nativa </a>
+      <a
+        :class="{ 'nav-link': true, active: aktiv[2] }"
+        @click="matrizNativaEmit"
+        href="#"
+        >Matriz Nativa
+      </a>
     </li>
   </ul>
 </template>
@@ -51,8 +56,13 @@ export default {
       this.aktiv.splice(1, 2, this.tof);
       this.$root.$emit("netaUpdate", [this.aktiv]);
     },
-    linkEmit: function() {
+    matrizNativaEmit: function() {
       this.$emit("linkUpdate", [this.aktiv]);
+      this.tof = !this.aktiv.slice(2, 3)[0];
+      this.aktiv.push(true);
+      this.aktiv.fill(false);
+      this.aktiv.splice(2, 3, this.tof);
+      this.$root.$emit("matrizNativaUpdate", [this.aktiv]);
     }
   },
   computed: {}
