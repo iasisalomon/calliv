@@ -8,9 +8,8 @@
       @linkUpdate="linkUpdate($event)"
     />
     <h1>{{ filename }}</h1>
-    <div>{{ WellsUniqueCols }}</div>
-    <div>{{ WellsUniqueRows }}</div>
-    <div>{{ adjustedAverageBy4 }}</div>
+    <!-- <div>{{ WellsUniqueRows }}</div>
+    <div>{{ adjustedAverageBy4 }}</div> -->
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"
@@ -32,6 +31,12 @@
       :WellsUniqueRows="WellsUniqueRows"
       :adjustedAverageBy4="adjustedAverageBy4"
     />
+    <MatrizCero
+      v-show="showactive[3]"
+      :WellsUniqueCols="WellsUniqueCols"
+      :WellsUniqueRows="WellsUniqueRows"
+      :curveBy4="curveBy4"
+    />
   </div>
 </template>
 
@@ -42,6 +47,7 @@ import Nav from "../components/Nav";
 import ProcessedTable from "../components/ProcessedTable";
 import TableByWell from "../components/TableByWell";
 import Matriz from "../components/Matriz";
+import MatrizCero from "../components/MatrizCero";
 
 var groupBy = function(xs, key) {
   return xs.reduce(function(rv, x) {
@@ -73,7 +79,10 @@ export default {
       /*** MATRICES ***/
       WellsUniqueRows: [],
       WellsUniqueCols: [],
-      adjustedAverageBy4: []
+      adjustedAverageBy4: [],
+      minimum: [],
+      curve: [],
+      curveBy4: []
     };
   },
   components: {
@@ -81,7 +90,8 @@ export default {
     ProcessedTable,
     TableByWell,
     Nav,
-    Matriz
+    Matriz,
+    MatrizCero
   },
   methods: {},
   created() {
@@ -147,6 +157,18 @@ export default {
     this.WellsUniqueCols = [...new Set(this.WellsUniqueCols)];
     this.adjustedAverageBy4 = _.chunk(this.adjustedAverage, [4]);
     /*** MATRICES ***/
+    this.minimum = this.adjustedAverageBy4.map(e => {
+      return e[0];
+    });
+    this.minimum = _.min(this.minimum);
+    this.curve = this.adjustedAverage.map(e => {
+      if (e - this.minimum < 0) {
+        return 0;
+      } else {
+        return e - this.minimum;
+      }
+    });
+    this.curveBy4 = _.chunk(this.curve, [4]);
   },
   mounted() {
     this.$root.$on("datosUpdate", data => {
@@ -157,6 +179,9 @@ export default {
       this.showactive = data[0];
     });
 
+    this.$root.$on("matrizNativaUpdate", data => {
+      this.showactive = data[0];
+    });
     this.$root.$on("matrizNativaUpdate", data => {
       this.showactive = data[0];
     });
