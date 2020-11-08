@@ -8,8 +8,6 @@
       @linkUpdate="linkUpdate($event)"
     />
     <h1>{{ filename }}</h1>
-    <!-- <div>{{ WellsUniqueRows }}</div>
-    <div>{{ adjustedAverageBy4 }}</div> -->
     <ProcessedTable
       v-show="showactive[0]"
       :csvdata="csvdata"
