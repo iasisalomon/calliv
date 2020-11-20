@@ -12,43 +12,13 @@ import FitSelector from "../components/FitSelector";
 
 export default {
   data() {
-    return {
-      csvdata: [],
-      filename: "Choose file",
-      tableConfig: []
-    };
+    return {};
   },
   components: {
     Navbar,
     FitSelector
   },
-  methods: {
-    updateCSV: function(el) {
-      this.filename = el[0];
-      this.csvdata = el[1].slice(1, el[1].length - 1);
-      this.tableConfig = el[1].shift();
-      this.csvdata = this.csvdata.map(el => {
-        return el.map(e => {
-          return e.replace(/,/g, ".");
-        });
-      });
-    },
-    linkData: function() {
-      if (localStorage.getItem("filename") != "") {
-        localStorage.setItem("filename", JSON.stringify(this.filename));
-      }
-      if (localStorage.getItem("csvdata") != "") {
-        localStorage.setItem("csvdata", JSON.stringify(this.csvdata));
-      }
-      if (localStorage.getItem("tableConfig") != "") {
-        localStorage.setItem("tableConfig", JSON.stringify(this.tableConfig));
-      }
-      this.$router.push({
-        name: "Procesados",
-        params: { data: [this.filename, this.tableConfig, this.csvdata] }
-      });
-    }
-  },
+  methods: {},
   mounted() {
     if (localStorage.getItem("filename") != "") {
       this.filename = JSON.parse(localStorage.getItem("filename"));
@@ -61,6 +31,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped lang="scss">
