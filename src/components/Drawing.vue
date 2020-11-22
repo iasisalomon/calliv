@@ -3,6 +3,9 @@
       <body></body>   
   </div>
 </template>
+<script src='../../'>
+
+</script>
 <script>
 import * as tf from "@tensorflow/tfjs";
 import p5 from "../lib/p5.min.js";
