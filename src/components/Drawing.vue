@@ -1,5 +1,6 @@
 <template>
   <div class="container mt-1">
+    {{ ys }}
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>
@@ -11,7 +12,10 @@ import P5 from "p5";
 export default {
   props: {},
   data() {
-    return {};
+    return {
+      curveBy4: [],
+      ys: [],
+    };
   },
   methods: {},
   created() {
@@ -44,6 +48,10 @@ export default {
       };
     };
     new P5(sketch, "canvas");
+    this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
+    this.ys = this.curveBy4.map((el) => {
+      return el[1];
+    });
   },
 };
 </script>
