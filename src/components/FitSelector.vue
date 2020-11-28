@@ -1,18 +1,15 @@
 <template>
   <form>
     <div class="form-row">
-      <div class="col-7">
-        <input type="text" class="form-control" placeholder="Tipo de Curva" />
+      <div class="col-3">
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
       </div>
       <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Grado del Polinomio"
-        />
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Queremos flan" />
+        <input type="text" class="form-control" placeholder="Last name" />
       </div>
     </div>
   </form>
@@ -23,6 +20,6 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {},
 };
 </script>

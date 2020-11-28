@@ -1,7 +1,5 @@
 <template>
   <div class="container mt-1">
-    {{ xs }}
-    {{ ys }}
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>
@@ -33,8 +31,10 @@ export default {
 
       function grid() {
         for (var x = 0; x < w; x += 20) {
+          s.strokeWeight(0.1);
           s.line(x, 0, x, h);
           for (var y = 0; y < h; y += 20) {
+            s.strokeWeight(0.1);
             s.line(0, y, w, y);
           }
         }
