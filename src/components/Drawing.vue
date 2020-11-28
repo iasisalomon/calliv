@@ -26,8 +26,8 @@ export default {
     });
     localStorage.setItem("ys", JSON.stringify(this.ys));
     const sketch = (s) => {
-      let w = 800;
-      let h = 500;
+      let w = 900;
+      let h = 600;
 
       function grid() {
         for (var x = 0; x < w; x += 20) {
