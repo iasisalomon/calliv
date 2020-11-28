@@ -42,13 +42,13 @@ export default {
         s.scale(1, -1);
       }
 
-      // function displayMousePosition() {
-      //   s.push();
-      //   s.rect(0, 480, 60, 20);
-      //   s.scale(1, -1);
-      //   s.text(s.mouseX + "," + s.mouseY, 5, -485);
-      //   s.pop();
-      // }
+      function displayMousePosition() {
+        s.push();
+        s.rect(0, 580, 60, 20);
+        s.scale(1, -1);
+        s.text(s.mouseX + "," + (600 - s.mouseY), 5, -585);
+        s.pop();
+      }
 
       s.setup = () => {
         s.createCanvas(w, h);
@@ -67,7 +67,7 @@ export default {
         });
         s.background(220);
         grid();
-        // displayMousePosition();
+        displayMousePosition();
         s.push();
         s.stroke("purple"); // Change the color
         s.strokeWeight(5); // Make the points 10 pixels in size
