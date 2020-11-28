@@ -22,20 +22,25 @@ export default {
   methods: {},
   created() {
     localStorage.setItem("xs", JSON.stringify(this.xs));
+    this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
+    this.ys = this.curveBy4.map((el) => {
+      return el[1];
+    });
+    localStorage.setItem("ys", JSON.stringify(this.ys));
     const sketch = (s) => {
       let w = 800;
       let h = 500;
 
-      // function grid() {
-      //   for (var x = 0; x < w; x += 20) {
-      //     s.line(x, 0, x, h);
-      //     for (var y = 0; y < h; y += 20) {
-      //       s.line(0, y, w, y);
-      //     }
-      //   }
-      //   s.translate(0, h);
-      //   s.scale(1, -1);
-      // }
+      function grid() {
+        for (var x = 0; x < w; x += 20) {
+          s.line(x, 0, x, h);
+          for (var y = 0; y < h; y += 20) {
+            s.line(0, y, w, y);
+          }
+        }
+        s.translate(0, h);
+        s.scale(1, -1);
+      }
 
       // function displayMousePosition() {
       //   s.push();
@@ -50,21 +55,32 @@ export default {
       };
 
       s.draw = () => {
+        let xs = JSON.parse(localStorage.getItem("xs"));
+        xs = xs.map((el) => {
+          Number(el);
+          return el / 100;
+        });
+        let ys = JSON.parse(localStorage.getItem("ys"));
+        ys = ys.map((el) => {
+          Number(el);
+          return el / 100000;
+        });
         s.background(220);
-        // grid();
+        grid();
         // displayMousePosition();
         s.push();
         s.stroke("purple"); // Change the color
-        s.strokeWeight(10); // Make the points 10 pixels in size
+        s.strokeWeight(5); // Make the points 10 pixels in size
+        for (let i = 0; i < xs.length; i++) {
+          let px = s.map(xs[i], 0, 1, 0, w);
+          let py = s.map(ys[i], 0, 1, 0, h);
+          s.point(px, py);
+        }
         s.pop();
       };
     };
 
     new P5(sketch, "canvas");
-    this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
-    this.ys = this.curveBy4.map((el) => {
-      return el[1];
-    });
   },
 };
 </script>
