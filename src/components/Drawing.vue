@@ -69,7 +69,7 @@ export default {
         grid();
         displayMousePosition();
         s.push();
-        s.stroke("purple"); // Change the color
+        s.stroke("red"); // Change the color
         s.strokeWeight(5); // Make the points 10 pixels in size
         for (let i = 0; i < xs.length; i++) {
           let px = s.map(xs[i], 0, 1, 0, w);
