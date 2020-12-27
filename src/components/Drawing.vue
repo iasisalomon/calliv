@@ -5,8 +5,10 @@
 </template>
 
 <script>
-// import * as tf from "@tensorflow/tfjs";
 import P5 from "p5";
+import linear from '../javascripts/linear.js';
+
+console.log (linear)
 
 export default {
   props: {},
