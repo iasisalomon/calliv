@@ -48,8 +48,8 @@ import TableByWell from "../components/TableByWell";
 import Matriz from "../components/Matriz";
 import MatrizCero from "../components/MatrizCero";
 
-var groupBy = function (xs, key) {
-  return xs.reduce(function (rv, x) {
+var groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;
   }, {});
@@ -69,7 +69,7 @@ export default {
         "Lecture 1",
         "Lecture 2",
         "Lecture 3",
-        "Average",
+        "Average"
       ],
       Wells: [],
       groupByCSV: [],
@@ -81,7 +81,7 @@ export default {
       adjustedAverageBy4: [],
       minimum: [],
       curve: [],
-      curveBy4: [],
+      curveBy4: []
     };
   },
   components: {
@@ -90,7 +90,7 @@ export default {
     TableByWell,
     Nav,
     Matriz,
-    MatrizCero,
+    MatrizCero
   },
   methods: {},
   created() {
@@ -111,14 +111,14 @@ export default {
       this.Wells = Object.keys(this.groupByCSV);
       localStorage.setItem("Wells", JSON.stringify(this.Wells));
       //sort and storage raw adjusted values
-      this.rawAdjusted = Object.entries(this.groupByCSV).map((e) => {
-        return e[1].map((f) => {
+      this.rawAdjusted = Object.entries(this.groupByCSV).map(e => {
+        return e[1].map(f => {
           return f[2] - f[3];
         });
       });
       localStorage.setItem("rawAdjusted", JSON.stringify(this.rawAdjusted));
       //sort and storage averages
-      this.adjustedAverage = this.rawAdjusted.map((e) => {
+      this.adjustedAverage = this.rawAdjusted.map(e => {
         return (
           e.reduce((a, b) => {
             return a + b;
@@ -145,22 +145,22 @@ export default {
     }
 
     /*** MATRICES ***/
-    this.WellsUniqueRows = this.Wells.map((el) => {
+    this.WellsUniqueRows = this.Wells.map(el => {
       return el.replace(/[^a-zA-Z]/, "");
     });
     this.WellsUniqueRows = [...new Set(this.WellsUniqueRows)];
-    this.WellsUniqueCols = this.Wells.map((el) => {
+    this.WellsUniqueCols = this.Wells.map(el => {
       return el.replace(/[a-zA-Z]/, "");
     });
     this.WellsUniqueCols.unshift("Titulo");
     this.WellsUniqueCols = [...new Set(this.WellsUniqueCols)];
     this.adjustedAverageBy4 = _.chunk(this.adjustedAverage, [4]);
     /*** MATRICES ***/
-    this.minimum = this.adjustedAverageBy4.map((e) => {
+    this.minimum = this.adjustedAverageBy4.map(e => {
       return e[0];
     });
     this.minimum = _.min(this.minimum);
-    this.curve = this.adjustedAverage.map((e) => {
+    this.curve = this.adjustedAverage.map(e => {
       if (e - this.minimum < 0) {
         return 0;
       } else {
@@ -187,21 +187,21 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on("datosUpdate", (data) => {
+    this.$root.$on("datosUpdate", data => {
       this.showactive = data[0];
     });
 
-    this.$root.$on("netaUpdate", (data) => {
+    this.$root.$on("netaUpdate", data => {
       this.showactive = data[0];
     });
 
-    this.$root.$on("matrizNativaUpdate", (data) => {
+    this.$root.$on("matrizNativaUpdate", data => {
       this.showactive = data[0];
     });
-    this.$root.$on("matrizNativaUpdate", (data) => {
+    this.$root.$on("matrizNativaUpdate", data => {
       this.showactive = data[0];
     });
-  },
+  }
 };
 </script>
 

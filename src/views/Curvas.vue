@@ -18,7 +18,7 @@ export default {
   components: {
     Navbar,
     FitSelector,
-    Drawing,
+    Drawing
   },
   methods: {},
   mounted() {
@@ -31,7 +31,7 @@ export default {
     if (localStorage.getItem("tableConfig") != "") {
       this.tableConfig = JSON.parse(localStorage.getItem("tableConfig"));
     }
-  },
+  }
 };
 </script>
 

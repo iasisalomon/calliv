@@ -14,18 +14,18 @@ export default {
     return {
       curveBy4: [],
       ys: [],
-      xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
+      xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100]
     };
   },
   methods: {},
   created() {
     localStorage.setItem("xs", JSON.stringify(this.xs));
     this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
-    this.ys = this.curveBy4.map((el) => {
+    this.ys = this.curveBy4.map(el => {
       return el[1];
     });
     localStorage.setItem("ys", JSON.stringify(this.ys));
-    const sketch = (s) => {
+    const sketch = s => {
       let w = 900;
       let h = 600;
 
@@ -56,12 +56,12 @@ export default {
 
       s.draw = () => {
         let xs = JSON.parse(localStorage.getItem("xs"));
-        xs = xs.map((el) => {
+        xs = xs.map(el => {
           Number(el);
           return el / 100;
         });
         let ys = JSON.parse(localStorage.getItem("ys"));
-        ys = ys.map((el) => {
+        ys = ys.map(el => {
           Number(el);
           return el / 100000;
         });
@@ -81,6 +81,6 @@ export default {
     };
 
     new P5(sketch, "canvas");
-  },
+  }
 };
 </script>
