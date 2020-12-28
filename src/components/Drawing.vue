@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-1">
-    {{}}
+    {{ mbs }}
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>
@@ -47,8 +47,11 @@ export default {
     localStorage.setItem("ys", JSON.stringify(this.ys));
 
     //llamada a la optimizacion
-
-    this.mbs = linear.linear(xs, ys);
+    let flan = linear.linear(xs, ys);
+    console.log(flan);
+    this.mbs = flan.map((el) => {
+      return el[0];
+    });
     console.log(tf.memory().numTensors);
   },
   beforeMount() {
