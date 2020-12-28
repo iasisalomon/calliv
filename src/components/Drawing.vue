@@ -17,30 +17,34 @@ export default {
       curveBy4: [],
       ys: [],
       xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
-      mbs: []
+      mbs: [],
     };
   },
   methods: {},
   beforeCreate() {
+    localStorage.setItem("xs", JSON.stringify(this.xs));
+    this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
+    this.ys = this.curveBy4.map((el) => {
+      return el[1];
+    });
+    localStorage.setItem("ys", JSON.stringify(this.ys));
     let xs = JSON.parse(localStorage.getItem("xs"));
+    xs = xs.map((el) => {
+      Number(el);
+      return el / 100;
+    });
     let ys = JSON.parse(localStorage.getItem("ys"));
-
-    // console.log (linear.linear (xs,ys))
-    // tf.tidy(linear.linear);
+    ys = ys.map((el) => {
+      Number(el);
+      return el / 100000;
+    });
     this.mbs = linear.linear(xs, ys);
     console.log(tf.memory().numTensors);
   },
   created() {
-    localStorage.setItem("xs", JSON.stringify(this.xs));
-    this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
-    this.ys = this.curveBy4.map(el => {
-      return el[1];
-    });
-    localStorage.setItem("ys", JSON.stringify(this.ys));
-    const sketch = s => {
+    const sketch = (s) => {
       let w = 900;
       let h = 600;
-
       function grid() {
         for (var x = 0; x < w; x += 20) {
           s.strokeWeight(0.1);
@@ -69,16 +73,6 @@ export default {
       s.draw = () => {
         s.frameRate(1);
 
-        let xs = JSON.parse(localStorage.getItem("xs"));
-        xs = xs.map(el => {
-          Number(el);
-          return el / 100;
-        });
-        let ys = JSON.parse(localStorage.getItem("ys"));
-        ys = ys.map(el => {
-          Number(el);
-          return el / 100000;
-        });
         s.background(220);
         grid();
         displayMousePosition();
@@ -94,6 +88,6 @@ export default {
       };
     };
     new P5(sketch, "canvas");
-  }
+  },
 };
 </script>
