@@ -1,14 +1,14 @@
 <template>
   <div class="container mt-1">
+    {{}}
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>
 
 <script>
 import P5 from "p5";
-import linear from '../javascripts/linear.js';
-
-console.log (linear)
+import linear from "../javascripts/linear.js";
+import * as tf from "@tensorflow/tfjs";
 
 export default {
   props: {},
@@ -16,10 +16,20 @@ export default {
     return {
       curveBy4: [],
       ys: [],
-      xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100]
+      xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
+      mbs: []
     };
   },
   methods: {},
+  beforeCreate() {
+    let xs = JSON.parse(localStorage.getItem("xs"));
+    let ys = JSON.parse(localStorage.getItem("ys"));
+
+    // console.log (linear.linear (xs,ys))
+    // tf.tidy(linear.linear);
+    this.mbs = linear.linear(xs, ys);
+    console.log(tf.memory().numTensors);
+  },
   created() {
     localStorage.setItem("xs", JSON.stringify(this.xs));
     this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
@@ -57,6 +67,8 @@ export default {
       };
 
       s.draw = () => {
+        s.frameRate(1);
+
         let xs = JSON.parse(localStorage.getItem("xs"));
         xs = xs.map(el => {
           Number(el);
@@ -81,7 +93,6 @@ export default {
         s.pop();
       };
     };
-
     new P5(sketch, "canvas");
   }
 };
