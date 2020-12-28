@@ -8,8 +8,6 @@ export default {
     m = tf.scalar(Math.random()).variable();
     b = tf.scalar(Math.random()).variable();
 
-    tf.print(m);
-    tf.print(b);
     console.log(x_vals);
     console.log(y_vals);
 
@@ -41,11 +39,12 @@ export default {
         let ys = tf.tensor1d(y_vals);
         for (let i = 0; i < 1000; i++) {
           console.log(tf.print(m));
-
           optimizer.minimize(() => loss(pred(x_vals), ys));
         }
       }
     });
-    return m.dataSync(), b.dataSync();
+    tf.print(m);
+    tf.print(b);
+    return [m.dataSync(), b.dataSync()];
   },
 };

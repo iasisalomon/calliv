@@ -21,27 +21,37 @@ export default {
     };
   },
   methods: {},
-  beforeCreate() {
+  created() {
+    //manejo del Local Storage
     localStorage.setItem("xs", JSON.stringify(this.xs));
     this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
+
     this.ys = this.curveBy4.map((el) => {
       return el[1];
     });
     localStorage.setItem("ys", JSON.stringify(this.ys));
+
     let xs = JSON.parse(localStorage.getItem("xs"));
     xs = xs.map((el) => {
       Number(el);
       return el / 100;
     });
     let ys = JSON.parse(localStorage.getItem("ys"));
+
     ys = ys.map((el) => {
       Number(el);
       return el / 100000;
     });
+
+    localStorage.setItem("xs", JSON.stringify(this.xs));
+    localStorage.setItem("ys", JSON.stringify(this.ys));
+
+    //llamada a la optimizacion
+
     this.mbs = linear.linear(xs, ys);
     console.log(tf.memory().numTensors);
   },
-  created() {
+  beforeMount() {
     const sketch = (s) => {
       let w = 900;
       let h = 600;
@@ -72,16 +82,30 @@ export default {
 
       s.draw = () => {
         s.frameRate(1);
-
         s.background(220);
         grid();
         displayMousePosition();
         s.push();
-        s.stroke("red"); // Change the color
-        s.strokeWeight(5); // Make the points 10 pixels in size
-        for (let i = 0; i < xs.length; i++) {
-          let px = s.map(xs[i], 0, 1, 0, w);
-          let py = s.map(ys[i], 0, 1, 0, h);
+        s.stroke("red");
+        s.strokeWeight(10);
+
+        //data management
+        let xsd = JSON.parse(localStorage.getItem("xs"));
+        let ysd = JSON.parse(localStorage.getItem("ys"));
+
+        xsd = xsd.map((el) => {
+          Number(el);
+          return el / 100;
+        });
+        ysd = ysd.map((el) => {
+          Number(el);
+          return el / 100000;
+        });
+
+        //dot drawing
+        for (let i = 0; i < xsd.length; i++) {
+          let px = s.map(xsd[i], 0, 1, 0, w);
+          let py = s.map(ysd[i], 0, 1, 0, h);
           s.point(px, py);
         }
         s.pop();
