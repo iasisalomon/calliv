@@ -84,13 +84,13 @@ export default {
       };
 
       s.draw = () => {
-        s.frameRate(1);
+        s.frameRate(30);
         s.background(220);
         grid();
         displayMousePosition();
         s.push();
         s.stroke("red");
-        s.strokeWeight(10);
+        s.strokeWeight(5);
 
         //data management
         let xsd = JSON.parse(localStorage.getItem("xs"));
@@ -111,6 +111,14 @@ export default {
           let py = s.map(ysd[i], 0, 1, 0, h);
           s.point(px, py);
         }
+
+        let x1 = s.map(0, 0, 1, 0, w);
+        let y1 = s.map(this.mbs[1], 0, 1, 0, w);
+        let x2 = s.map(1, 0, 1, 0, w);
+        let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
+        console.log(this.mbs[0] + this.mbs[1]);
+
+        s.line(x1, y1, x2, y2);
         s.pop();
       };
     };
