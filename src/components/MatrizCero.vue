@@ -35,9 +35,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
-
-:WellsUniqueCols="WellsUniqueCols" :WellsUniqueRows="WellsUniqueRows"
-:adjustedAverage="adjustedAverage"
+<style scoped lang="scss"></style>
