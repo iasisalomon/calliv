@@ -2,43 +2,35 @@ import * as tf from "@tensorflow/tfjs";
 
 export default {
   linear: (x_vals, y_vals) => {
-    console.log(x_vals);
-    console.log(y_vals);
-    // let dispel = [];
-    // dispel.push(x_vals, y_vals, tf.memory().numTensors);
-    let m, b;
-    m = tf.scalar(Math.random()).variable();
-    b = tf.scalar(Math.random()).variable();
+    const m = tf.variable(tf.scalar(Math.random()));
+    const b = tf.variable(tf.scalar(Math.random()));
 
-    let pred = tf.tidy(() => {
-      let xs = tf.tensor1d(x_vals);
-      tf.print(xs);
-      //y = mx+b
-      let ys = xs.mul(m).add(b);
-      return ys;
-    });
+    const learningRate = 0.5;
+    const optimizer = tf.train.sgd(learningRate);
 
-    let loss = tf.tidy(() => {
-      pred
-        .sub(y_vals)
+    function predict(x) {
+      // y = m * x + b
+      return m.mul(x).add(b);
+    }
+
+    function loss(predictions, labels) {
+      // Mean Squared Error
+      return predictions
+        .sub(labels)
         .square()
         .mean();
-    });
+    }
 
-    // Train the model rnif x_vals is not null
-    let learningRate = 0.05;
-    let optimizer = tf.train.sgd(learningRate);
+    function train(xs, ys) {
+      //train function
+      optimizer.minimize(() => loss(predict(xs), ys));
+    }
 
-    tf.tidy(() => {
-      if (x_vals > 0) {
-        let ys = tf.tensor1d(y_vals);
-        for (let i = 0; i < Math.pow(10, 7); i++) {
-          optimizer.minimize(() => loss(pred(x_vals), ys));
-        }
-      }
-    });
-    tf.print(m);
-    tf.print(b);
+    for (let i = 0; i < 1000; i++) {
+      //execute train n times
+      train(x_vals, y_vals);
+    }
+
     return [m.dataSync(), b.dataSync()];
   },
 };
