@@ -47,12 +47,7 @@ export default {
     localStorage.setItem("ys", JSON.stringify(this.ys));
 
     //llamada a la optimizacion
-    let flan = linear.linear(xs, ys);
-    console.log(flan);
-    this.mbs = flan.map((el) => {
-      console.log (el)
-      return el[0];
-    });
+    this.mbs = linear.linear(xs, ys);
     console.log(tf.memory().numTensors);
   },
   beforeMount() {
@@ -91,7 +86,7 @@ export default {
         displayMousePosition();
         s.push();
         s.stroke("red");
-        s.strokeWeight(5);
+        s.strokeWeight(8);
 
         //data management
         let xsd = JSON.parse(localStorage.getItem("xs"));
@@ -112,14 +107,16 @@ export default {
           let py = s.map(ysd[i], 0, 1, 0, h);
           s.point(px, py);
         }
+        s.pop();
+        s.push();
         //line drawing
         let x1 = s.map(0, 0, 1, 0, w);
         let y1 = s.map(this.mbs[1], 0, 1, 0, w);
         let x2 = s.map(1, 0, 1, 0, w);
         let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
         console.log(this.mbs[0] + this.mbs[1]);
+        s.strokeWeight(2);
         s.line(x1, y1, x2, y2);
-
         s.pop();
       };
     };
