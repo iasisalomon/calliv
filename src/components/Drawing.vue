@@ -1,6 +1,13 @@
 <template>
   <div class="container mt-1">
-    {{ mbs }}
+    <div class="row">
+      <div class="col-6">
+        <h3>y = {{ mbs[0] }}x + {{ mbs[1] }}</h3>
+      </div>
+      <div class="col-6">
+        <h3>R2 = {{ mbs[2] }}</h3>
+      </div>
+    </div>
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>

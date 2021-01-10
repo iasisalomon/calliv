@@ -58,7 +58,8 @@ export default {
     //R2 determination
     let r2 = 1 - SEline / SEmean;
     r2 = Number(r2.toFixed(5));
-    console.log(r2);
+    finalm = Number(finalm.toFixed(5));
+    finalb = Number(finalb.toFixed(5));
 
     return [finalm, finalb, r2];
   },
