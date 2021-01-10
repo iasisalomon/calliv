@@ -50,6 +50,7 @@ export default {
     let flan = linear.linear(xs, ys);
     console.log(flan);
     this.mbs = flan.map((el) => {
+      console.log (el)
       return el[0];
     });
     console.log(tf.memory().numTensors);
@@ -111,14 +112,14 @@ export default {
           let py = s.map(ysd[i], 0, 1, 0, h);
           s.point(px, py);
         }
-
+        //line drawing
         let x1 = s.map(0, 0, 1, 0, w);
         let y1 = s.map(this.mbs[1], 0, 1, 0, w);
         let x2 = s.map(1, 0, 1, 0, w);
         let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
         console.log(this.mbs[0] + this.mbs[1]);
-
         s.line(x1, y1, x2, y2);
+
         s.pop();
       };
     };

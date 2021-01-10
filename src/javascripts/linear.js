@@ -31,6 +31,42 @@ export default {
       train(x_vals, y_vals);
     }
 
-    return [m.dataSync(), b.dataSync()];
+    let finalm = Number(m.dataSync());
+    let finalb = Number(b.dataSync());
+    let predictedys = x_vals.map((el) => {
+      return finalm * el + finalb;
+    });
+
+    //r2 calculations
+    let sum = y_vals.reduce((previous, current) => (current += previous));
+    console.log(sum);
+
+    let mean = sum / y_vals.length;
+    console.log(mean);
+
+    //SEmean
+    let y2mean = y_vals.map((el) => {
+      return Math.pow(el - mean, 2);
+    });
+    let SEmean = y2mean.reduce((previous, current) => (current += previous));
+    console.log(y2mean);
+    console.log(SEmean);
+
+    //SEline
+    let y2diff = [];
+    for (let i = 0; i < y_vals.length; i++) {
+      y2diff.push(Math.pow(y_vals[i] - predictedys[i], 2));
+    }
+    let SEline = y2diff.reduce((previous, current) => (current += previous));
+
+    console.log(y2diff);
+    console.log(SEline);
+
+    //R2 determination
+    let r2 = 1 - SEline / SEmean;
+    r2 = Number(r2.toFixed(5));
+    console.log(r2);
+
+    return [m.dataSync(), b.dataSync(), r2];
   },
 };
