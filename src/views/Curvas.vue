@@ -2,13 +2,14 @@
   <div class="container">
     <Navbar />
     <FitSelector />
-    <h1>{{ filename }}</h1>
+    <Drawing />
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Navbar";
 import FitSelector from "../components/FitSelector";
+import Drawing from "../components/Drawing";
 
 export default {
   data() {
@@ -16,7 +17,8 @@ export default {
   },
   components: {
     Navbar,
-    FitSelector
+    FitSelector,
+    Drawing
   },
   methods: {},
   mounted() {
@@ -31,8 +33,6 @@ export default {
     }
   }
 };
-
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

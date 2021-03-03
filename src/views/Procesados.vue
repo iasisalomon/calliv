@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{ adjustedAverageBy4 }}
     <Navbar />
     <Nav
       :showactive="showactive"
@@ -167,6 +168,23 @@ export default {
       }
     });
     this.curveBy4 = _.chunk(this.curve, [4]);
+  },
+  beforeMount() {
+    if (this.adjustedAverageBy4 != undefined) {
+      localStorage.setItem(
+        "adjustedAverageBy4",
+        JSON.stringify(this.adjustedAverageBy4)
+      );
+    } else {
+      this.adjustedAverageBy4 = JSON.parse(
+        localStorage.getItem("adjustedAverageBy4")
+      );
+    }
+    if (this.curveBy4 != undefined) {
+      localStorage.setItem("curveBy4", JSON.stringify(this.curveBy4));
+    } else {
+      this.curveBy4 = JSON.parse(localStorage.getItem("curveBy4"));
+    }
   },
   mounted() {
     this.$root.$on("datosUpdate", data => {
