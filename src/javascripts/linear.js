@@ -1,4 +1,4 @@
-import * as tf from "@tensorflow/tfjs";
+import * as tf from '@tensorflow/tfjs';
 
 export default {
   linear: (x_vals, y_vals) => {
@@ -33,7 +33,7 @@ export default {
 
     let finalm = Number(m.dataSync());
     let finalb = Number(b.dataSync());
-    let predictedys = x_vals.map(el => {
+    let predictedys = x_vals.map((el) => {
       return finalm * el + finalb;
     });
 
@@ -45,7 +45,7 @@ export default {
     console.log(mean);
 
     //SEmean
-    let y2mean = y_vals.map(el => {
+    let y2mean = y_vals.map((el) => {
       return Math.pow(el - mean, 2);
     });
     let SEmean = y2mean.reduce((previous, current) => (current += previous));
@@ -64,9 +64,9 @@ export default {
 
     //R2 determination
     let r2 = 1 - SEline / SEmean;
-    r2 = Number(r2.toFixed(5));
+    r2 = [Number(r2.toFixed(5))];
     console.log(r2);
 
     return [m.dataSync(), b.dataSync(), r2];
-  }
+  },
 };
