@@ -78,7 +78,7 @@ export default {
     });
 
     this.mbs = this.mbs.map((el) => {
-      return Number(el.toFixed(4));
+      return Number(el.toFixed(5));
     });
 
     console.log(tf.memory().numTensors);
