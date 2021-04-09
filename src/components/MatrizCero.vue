@@ -20,24 +20,22 @@
 export default {
   props: {
     WellsUniqueCols: {
-      type: Array,
+      type: Array
     },
     WellsUniqueRows: {
-      type: Array,
+      type: Array
     },
     curveBy4: {
-      type: Array,
-    },
+      type: Array
+    }
   },
   data() {
     return {};
-  },
+  }
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
 
 :WellsUniqueCols="WellsUniqueCols" :WellsUniqueRows="WellsUniqueRows"
 :adjustedAverage="adjustedAverage"

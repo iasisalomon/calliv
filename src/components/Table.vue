@@ -19,18 +19,18 @@
 export default {
   props: {
     csvdata: {
-      type: Array,
+      type: Array
     },
     tableConfig: {
-      type: Array,
+      type: Array
     },
     filename: {
-      type: String,
-    },
+      type: String
+    }
   },
   data() {
     return {};
-  },
+  }
 };
 </script>
 

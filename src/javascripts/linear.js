@@ -33,7 +33,7 @@ export default {
 
     let finalm = Number(m.dataSync());
     let finalb = Number(b.dataSync());
-    let predictedys = x_vals.map((el) => {
+    let predictedys = x_vals.map(el => {
       return finalm * el + finalb;
     });
 
@@ -45,7 +45,7 @@ export default {
     console.log(mean);
 
     //SEmean
-    let y2mean = y_vals.map((el) => {
+    let y2mean = y_vals.map(el => {
       return Math.pow(el - mean, 2);
     });
     let SEmean = y2mean.reduce((previous, current) => (current += previous));
@@ -68,5 +68,5 @@ export default {
     console.log(r2);
 
     return [m.dataSync(), b.dataSync(), r2];
-  },
+  }
 };
