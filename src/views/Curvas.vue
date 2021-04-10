@@ -2,12 +2,14 @@
   <div class="container">
     <Navbar />
     <Drawing />
+    <DrawingCuadratic />
   </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar';
 import Drawing from '../components/Drawing';
+import DrawingCuadratic from '../components/DrawingCuadratic';
 
 export default {
   data() {
@@ -16,6 +18,7 @@ export default {
   components: {
     Navbar,
     Drawing,
+    DrawingCuadratic,
   },
   methods: {},
   mounted() {
