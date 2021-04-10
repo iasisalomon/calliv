@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <Navbar />
-    <FitSelector />
     <Drawing />
   </div>
 </template>

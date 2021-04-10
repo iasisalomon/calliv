@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 
 export default {
-  linear: (x_vals, y_vals) => {
+  cuadratic: (x_vals, y_vals) => {
     const a = tf.scalar(Math.random()).variable();
     const b = tf.scalar(Math.random()).variable();
     const c = tf.scalar(Math.random()).variable();
