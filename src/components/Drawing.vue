@@ -71,9 +71,7 @@ export default {
 
     //llamada a la optimizacion
     let flan = linear.linear(xs, ys);
-    console.log(flan);
     this.mbs = flan.map((el) => {
-      console.log(el);
       return el[0];
     });
 
@@ -137,7 +135,6 @@ export default {
         let y1 = s.map(this.mbs[1], 0, 1, 0, w);
         let x2 = s.map(1, 0, 1, 0, w);
         let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
-        console.log(this.mbs[0] + this.mbs[1]);
         s.line(x1, y1, x2, y2);
         s.pop();
       };
