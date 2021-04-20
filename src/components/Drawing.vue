@@ -1,28 +1,7 @@
 <template>
   <div class="container mt-1">
     <div class="container mt-1">
-      <div class="container mt-1 mb-1 justify-content-center">
-        <form>
-          <div class="form-row justify-content-center">
-            <div class="col-1">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <input type="text" disabled class="form-control" placeholder="LINEAR" />
-            </div>
-            <div class="col-3">
-              <h5 class="align-middle mt-2">y = {{ mbs[0] }} x + {{ mbs[1] }}</h5>
-            </div>
-            <div class="col-3">
-              <h5 class="align-middle mt-2">R2 = {{ mbs[2] }}</h5>
-            </div>
-          </div>
-        </form>
-      </div>
+      <div class="container mt-1 mb-1 justify-content-center"></div>
     </div>
     <div id="canvas" class="row justify-content-center"></div>
   </div>

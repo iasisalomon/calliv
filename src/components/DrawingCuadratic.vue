@@ -1,29 +1,6 @@
 <template>
   <div class="container mt-1">
-    <div class="container mt-1">
-      <div class="container mt-1 mb-1 justify-content-center">
-        <form>
-          <div class="form-row justify-content-center">
-            <div class="col-1">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <input type="text" disabled class="form-control" placeholder="LINEAR" />
-            </div>
-            <div class="col-3">
-              <h5 class="align-middle mt-2">y = {{ mbs[0] }} x + {{ mbs[1] }}</h5>
-            </div>
-            <div class="col-3">
-              <h5 class="align-middle mt-2">R2 = {{ mbs[2] }}</h5>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+    <div class="container mt-1"></div>
     <div id="canvas" class="row justify-content-center"></div>
   </div>
 </template>
@@ -131,11 +108,6 @@ export default {
         s.push();
         s.stroke('blue');
         s.strokeWeight(2);
-        let x1 = s.map(0, 0, 1, 0, w);
-        let y1 = s.map(this.mbs[1], 0, 1, 0, w);
-        let x2 = s.map(1, 0, 1, 0, w);
-        let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
-        s.line(x1, y1, x2, y2);
         s.pop();
       };
     };

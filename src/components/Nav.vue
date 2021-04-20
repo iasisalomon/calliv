@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     datosEmit: function() {
-      // console.log(Math.random());
       this.tof = !this.aktiv.shift();
       this.aktiv.push(true);
       this.aktiv.fill(false);

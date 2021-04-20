@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <Navbar />
-    <Drawing />
-    <DrawingCuadratic />
+    <NavDrawings />
+    <Drawing v-show="selected == 1" />
+    <DrawingCuadratic v-show="selected == 2" />
   </div>
 </template>
 
@@ -10,17 +11,26 @@
 import Navbar from '../components/Navbar';
 import Drawing from '../components/Drawing';
 import DrawingCuadratic from '../components/DrawingCuadratic';
-
+import NavDrawings from '../components/NavDrawings';
 export default {
   data() {
-    return {};
+    return {
+      mbs: [],
+      selected: '1',
+    };
   },
   components: {
     Navbar,
+    NavDrawings,
     Drawing,
     DrawingCuadratic,
   },
   methods: {},
+  beforeMount() {
+    this.$root.$on('changeDisplayGraphic', (data) => {
+      this.selected = data;
+    });
+  },
   mounted() {
     if (localStorage.getItem('filename') != '') {
       this.filename = JSON.parse(localStorage.getItem('filename'));
