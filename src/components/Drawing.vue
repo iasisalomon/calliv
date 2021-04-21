@@ -3,7 +3,7 @@
     <div class="container mt-1">
       <div class="container mt-1 mb-1 justify-content-center"></div>
     </div>
-    <div id="canvas" class="row justify-content-center"></div>
+    <div id="canvasLinear" class="row justify-content-center"></div>
   </div>
 </template>
 
@@ -20,9 +20,14 @@ export default {
       ys: [],
       xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
       mbs: [],
+      selected: '',
     };
   },
-  methods: {},
+  methods: {
+    emitCoefficientsLinear: function() {
+      this.$root.$emit('emitCoefficientsLinear', this.mbs);
+    },
+  },
   created() {
     //manejo del Local Storage
     localStorage.setItem('xs', JSON.stringify(this.xs));
@@ -62,7 +67,7 @@ export default {
   },
   beforeMount() {
     const sketch = (s) => {
-      let w = 900;
+      let w = 1080;
       let h = 600;
       function grid() {
         s.strokeWeight(0.1);
@@ -118,7 +123,11 @@ export default {
         s.pop();
       };
     };
-    new P5(sketch, 'canvas');
+    new P5(sketch, 'canvasLinear');
+  },
+  mounted() {
+    console.log(this.mbs);
+    this.emitCoefficientsLinear();
   },
 };
 </script>
