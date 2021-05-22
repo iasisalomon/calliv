@@ -1,11 +1,15 @@
 <template>
-  <div class="container-fluid"><Header /></div>
+  <div class="container-fluid">
+    <Header />
+    <UploadFile />
+  </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import UploadFile from '@/components/UploadFile'
 export default {
-  components: { Header },
+  components: { Header, UploadFile },
 }
 </script>
 
