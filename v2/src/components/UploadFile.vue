@@ -1,12 +1,13 @@
 <template>
   <div>
-    <b-form-file
-      v-model="file1"
-      :state="Boolean(file1)"
-      placeholder="Choose a file or drop it here..."
-      drop-placeholder="Drop file here..."
-    ></b-form-file>
-    <div class="mt-3">Selected file: {{ file1 ? file1.name : '' }}</div>
+    <b-form-file ref="file-input" v-model="file" class="mb-2"></b-form-file>
+
+    <b-button class="mr-2" @click="clearFiles">Reset via method</b-button>
+    <b-button @click="file = null">Reset via v-model</b-button>
+
+    <p class="mt-2">
+      Selected file: <b>{{ file ? file.name : '' }}</b>
+    </p>
   </div>
 </template>
 
@@ -14,8 +15,13 @@
 export default {
   data() {
     return {
-      file1: null,
+      file: null,
     }
+  },
+  methods: {
+    clearFiles() {
+      this.$refs['file-input'].reset()
+    },
   },
 }
 </script>
