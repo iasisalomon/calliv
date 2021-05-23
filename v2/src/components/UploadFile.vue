@@ -6,15 +6,30 @@
     <p class="mt-2">
       Selected file: <b>{{ file ? file.name : '' }}</b>
     </p>
+    <li v-for="label in getNativeRows" :key="label">
+      {{ label }}
+    </li>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
       file: null,
     }
+  },
+  computed: {
+    // this is modified mapped data
+    ...mapGetters('essayData', ['colLabels']),
+    // this is raw data
+    getRowLabels() {
+      return this.$store.state.essayData.rowLabels
+    },
+    getNativeRows() {
+      return this.$store.state.essayData.nativeRows
+    },
   },
   methods: {
     clearFiles() {
@@ -22,10 +37,10 @@ export default {
     },
     parseFile() {
       const element = this.$refs['file-input'].files[0]
-      console.log('element :>> ', element)
       this.$papa.parse(element, {
         complete: (result) => {
-          console.log('parsed >> ', result)
+          console.log('parsed >> ', result.data)
+          this.$store.dispatch('essayData/setNativeRows', result.data)
         },
       })
     },
