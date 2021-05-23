@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar sticky="true" toggleable="lg" type="dark" variant="info">
+    <b-navbar :sticky="true" toggleable="lg" type="dark" variant="info">
       <NuxtLink to="/">
         <b-navbar-brand>Calliv</b-navbar-brand>
       </NuxtLink>
