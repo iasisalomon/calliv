@@ -59,6 +59,6 @@ export default {
     let r2 = 1 - SEline / SEmean;
     r2 = [Number(r2.toFixed(5))];
 
-    return [m.dataSync(), b.dataSync(), r2];
+    return [finalm, finalb, r2];
   },
 };

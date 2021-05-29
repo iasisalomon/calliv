@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" href="/"
-          >Cargar CSV <span class="sr-only">(current)</span></a
+          >Upload CSV File <span class="sr-only">(current)</span></a
         >
-        <a class="nav-link" href="/datosprocesados">Datos Procesados</a>
-        <a class="nav-link" href="/curvas">Curvas</a>
+        <a class="nav-link" href="/datosprocesados">Process Data</a>
+        <a class="nav-link" href="/curvas">Fit Regression</a>
       </div>
     </div>
   </nav>

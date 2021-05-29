@@ -17,6 +17,7 @@ export default {
       curveBy4: [],
       ys: [],
       xs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
+      show: "1",
       mbs: [],
     };
   },
@@ -113,6 +114,18 @@ export default {
         s.stroke('blue');
         s.strokeWeight(2);
         s.pop();
+        if (this.show == 1) {
+          s.push();
+          //line drawing
+          let x1 = s.map(0, 0, 1, 0, w);
+          let y1 = s.map(this.mbs[1], 0, 1, 0, w);
+          let x2 = s.map(1, 0, 1, 0, w);
+          let y2 = s.map(this.mbs[0] + this.mbs[1], 0, 1, 0, h);
+          console.log(this.mbs[0] + this.mbs[1]);
+          s.strokeWeight(2);
+          s.line(x1, y1, x2, y2);
+          s.pop();
+        }
       };
     };
     new P5(sketch, 'canvasCuadratic');
@@ -120,6 +133,12 @@ export default {
   mounted() {
     console.log(this.mbs);
     this.emitCoefficientsCubic();
+  },
+  mounted() {
+    this.$root.$on("Select1", (data) => {
+      console.log(data);
+      this.show = data[0];
+    });
   },
 };
 </script>

@@ -5,7 +5,7 @@
         :class="{ 'nav-link': true, active: aktiv[0] }"
         @click="datosEmit"
         href="#"
-        >Datos Ordenados</a
+        >Sorted Data</a
       >
     </li>
     <li class="nav-item">
@@ -13,7 +13,7 @@
         :class="{ 'nav-link': true, active: aktiv[1] }"
         @click="netaEmit"
         href="#"
-        >Fluorescencia Neta</a
+        >Net Amounts</a
       >
     </li>
     <li class="nav-item">
@@ -21,7 +21,7 @@
         :class="{ 'nav-link': true, active: aktiv[2] }"
         @click="matrizNativaEmit"
         href="#"
-        >Matriz Nativa
+        >Native Matrix
       </a>
     </li>
     <li class="nav-item">
@@ -29,7 +29,7 @@
         :class="{ 'nav-link': true, active: aktiv[3] }"
         @click="matrizCeroEmit"
         href="#"
-        >Matriz Cero
+        >Zero Adjusted Matrix
       </a>
     </li>
   </ul>
@@ -39,13 +39,13 @@
 export default {
   props: {
     showactive: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
       tof: true,
-      aktiv: [true, false, false]
+      aktiv: [true, false, false],
     };
   },
   methods: {
@@ -76,9 +76,9 @@ export default {
       this.aktiv.fill(false);
       this.aktiv.splice(3, 4, this.tof);
       this.$root.$emit("matrizNativaUpdate", [this.aktiv]);
-    }
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 
