@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
-    {{ grouped }}
+    {{ sortedData }}
     -------------
-    {{ rawData }}
+    {{ groupedbyWellData }}
   </div>
 </template>
 
@@ -44,10 +44,8 @@ export default {
       ],
     }
   },
-  computed: { ...mapGetters('data', ['rawData']) },
-  created() {
-    this.grouped = this.rawData
-    this.grouped = this.grouped.sort()
+  computed: {
+    ...mapGetters('data', ['rawData', 'sortedData', 'groupedbyWellData']),
   },
 }
 </script>
