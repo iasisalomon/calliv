@@ -34,6 +34,8 @@ export default {
   methods: {
     clearFiles() {
       this.$refs['file-input'].reset()
+      this.$store.dispatch('data/clearTableHeader')
+      this.$store.dispatch('data/changeRawData', {})
     },
     parseFile() {
       const element = this.$refs['file-input'].files[0]
