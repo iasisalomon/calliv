@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-table striped hover :items="items" :fields="fields"></b-table>
+    <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
+    {{ grouped }}
+    -------------
+    {{ rawData }}
   </div>
 </template>
 
@@ -10,6 +13,7 @@ export default {
   data() {
     return {
       // Note 'isActive' is left out and will not appear in the rendered table
+      grouped: [],
       fields: [
         {
           key: 'last_name',
@@ -41,5 +45,9 @@ export default {
     }
   },
   computed: { ...mapGetters('data', ['rawData']) },
+  created() {
+    this.grouped = this.rawData
+    this.grouped = this.grouped.sort()
+  },
 }
 </script>

@@ -18,7 +18,9 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
     "firebase": "^8.6.3",
+    "lodash": "^4.17.21",
     "nuxt": "^2.15.3",
+    "vue-lodash": "^2.1.2",
     "vue-papa-parse": "^2.0.0"
   },
   "devDependencies": {
