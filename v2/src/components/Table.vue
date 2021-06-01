@@ -1,9 +1,7 @@
 <template>
   <div>
     <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
-    {{ sortedData }}
-    -------------
-    {{ groupedbyWellData }}
+    {{ rawAdjustedValues }}<br />
   </div>
 </template>
 
@@ -45,7 +43,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('data', ['rawData', 'sortedData', 'groupedbyWellData']),
+    ...mapGetters('data', [
+      'rawData',
+      'sortedData',
+      'groupedbyWellData',
+      'extractedWells',
+      'rawAdjustedValues',
+    ]),
   },
 }
 </script>

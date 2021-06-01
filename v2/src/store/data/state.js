@@ -3,4 +3,7 @@ export default () => ({
   tableHeader: [],
   sortedData: [],
   groupedbyWellData: {},
+  extractedWells: [],
+  rawAdjustedValues: [],
+  adjustedValuesAverage: [],
 })

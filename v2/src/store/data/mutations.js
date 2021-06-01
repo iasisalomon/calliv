@@ -10,6 +10,18 @@ export default {
   GROUP_BY_WELL_DATA(state) {
     state.groupedbyWellData = groupBy(state.sortedData, 0)
   },
+  EXTRACT_WELLS(state) {
+    state.extractedWells = Object.keys(state.groupedbyWellData)
+  },
+  ADJUST_DATA(state) {
+    state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map(
+      (e) => {
+        return e[1].map((f) => {
+          return f[2]
+        })
+      },
+    )
+  },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()
   },

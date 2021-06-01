@@ -10,8 +10,16 @@ export default {
     commit('SORT_DATA')
     dispatch('groupByWellData')
   },
-  groupByWellData: ({ commit }) => {
+  groupByWellData: ({ commit, dispatch }) => {
     commit('GROUP_BY_WELL_DATA')
+    dispatch('extractWells')
+  },
+  extractWells: ({ commit, dispatch }) => {
+    commit('EXTRACT_WELLS')
+    dispatch('rawAdjustedValues')
+  },
+  rawAdjustedValues: ({ commit, dispatch }) => {
+    commit('ADJUST_DATA')
   },
   getTableHeader: ({ commit }) => {
     commit('GET_TABLE_HEADER')

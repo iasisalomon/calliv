@@ -11,4 +11,13 @@ export default {
   groupedbyWellData: (state) => {
     return state.groupedbyWellData
   },
+  extractedWells: (state) => {
+    return state.extractedWells
+  },
+  rawAdjustedValues: (state) => {
+    return state.rawAdjustedValues
+  },
+  adjustedValuesAverage: (state) => {
+    return state.adjustedValuesAverage
+  },
 }
