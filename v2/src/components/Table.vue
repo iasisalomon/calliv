@@ -1,7 +1,18 @@
 <template>
   <div>
     <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
-    {{ rawAdjustedValues }}<br />
+    <div class="row">
+      <b-col cols="6">
+        <span v-for="(el, index) in rawData" :key="index">
+          {{ el }} <br />
+        </span>
+      </b-col>
+      <b-col cols="6">
+        <span v-for="(el, index) in sortedData" :key="index">
+          {{ el }} <br />
+        </span>
+      </b-col>
+    </div>
   </div>
 </template>
 
