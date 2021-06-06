@@ -6,4 +6,7 @@ export default () => ({
   extractedWells: [],
   rawAdjustedValues: [],
   adjustedValuesAverage: [],
+  wellRows: [],
+  wellCols: [],
+  chunkNumber: null,
 })

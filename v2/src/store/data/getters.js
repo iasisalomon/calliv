@@ -20,4 +20,13 @@ export default {
   adjustedValuesAverage: (state) => {
     return state.adjustedValuesAverage
   },
+  wellRows: (state) => {
+    return state.wellRows
+  },
+  wellCols: (state) => {
+    return state.wellCols
+  },
+  chunkNumber: (state) => {
+    return state.chunkNumber
+  },
 }

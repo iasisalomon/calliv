@@ -2,6 +2,11 @@
   <div>
     <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
     {{ rawAdjustedValues }}<br />
+    {{ adjustedValuesAverage }}<br />
+    {{ extractedWells }}<br />
+    {{ wellRows }}<br />
+    {{ wellCols }}<br />
+    {{ chunkNumber }}<br />
   </div>
 </template>
 
@@ -50,6 +55,10 @@ export default {
       'groupedbyWellData',
       'extractedWells',
       'rawAdjustedValues',
+      'adjustedValuesAverage',
+      'wellRows',
+      'wellCols',
+      'chunkNumber',
     ]),
   },
   created() {

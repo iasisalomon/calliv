@@ -20,14 +20,30 @@ export default {
   extractWells: ({ commit, dispatch }) => {
     commit('EXTRACT_WELLS')
     dispatch('rawAdjustedValues')
+    dispatch('obtainWellRows')
+    dispatch('obtainWellCols')
   },
   rawAdjustedValues: ({ commit, dispatch }) => {
-    commit('ADJUST_DATA')
+    commit('ADJUST_RAW_VALUES')
+    dispatch('rawAdjustedAverage')
+  },
+  rawAdjustedAverage: ({ commit, dispatch }) => {
+    commit('ADJUST_VALUES_AVERAGE')
   },
   getTableHeader: ({ commit }) => {
     commit('GET_TABLE_HEADER')
   },
   clearTableHeader: ({ commit }) => {
     commit('CLEAR_TABLE_HEADER')
+  },
+  obtainWellRows: ({ commit }) => {
+    commit('OBTAIN_WELL_ROWS')
+  },
+  obtainWellCols: ({ commit, dispatch }) => {
+    commit('OBTAIN_WELL_COLS')
+    dispatch('getChunkNumber')
+  },
+  getChunkNumber: ({ commit }) => {
+    commit('GET_CHUNK_NUMBER')
   },
 }

@@ -16,7 +16,7 @@ export default {
   EXTRACT_WELLS(state) {
     state.extractedWells = Object.keys(state.groupedbyWellData)
   },
-  ADJUST_DATA(state) {
+  ADJUST_RAW_VALUES(state) {
     state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map(
       (e) => {
         return e[1].map((f) => {
@@ -25,10 +25,34 @@ export default {
       },
     )
   },
+  ADJUST_VALUES_AVERAGE(state) {
+    state.adjustedValuesAverage = state.rawAdjustedValues.map((e) => {
+      return (
+        e.reduce((a, b) => {
+          return a + b
+        }) / e.length
+      )
+    })
+  },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()
   },
   CLEAR_TABLE_HEADER(state) {
     state.tableHeader = []
+  },
+  OBTAIN_WELL_ROWS(state) {
+    state.wellRows = state.extractedWells.map((el) => {
+      return el.replace(/[^a-zA-Z]/, '')
+    })
+    state.wellRows = [...new Set(state.wellRows)]
+  },
+  OBTAIN_WELL_COLS(state) {
+    state.wellCols = state.extractedWells.map((el) => {
+      return el.replace(/[a-zA-Z]/, '')
+    })
+    state.wellCols = [...new Set(state.wellCols)]
+  },
+  GET_CHUNK_NUMBER(state) {
+    state.chunkNumber = state.wellCols.length
   },
 }
