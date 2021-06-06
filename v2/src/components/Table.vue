@@ -42,6 +42,7 @@ export default {
       ],
     }
   },
+
   computed: {
     ...mapGetters('data', [
       'rawData',
@@ -50,6 +51,18 @@ export default {
       'extractedWells',
       'rawAdjustedValues',
     ]),
+  },
+  created() {
+    this.localGetData()
+  },
+  methods: {
+    localGetData() {
+      if (process.browser) {
+        const ls = localStorage.getItem('rawData')
+        const payload = JSON.parse(ls)
+        this.$store.dispatch('data/changeRawData', payload)
+      }
+    },
   },
 }
 </script>

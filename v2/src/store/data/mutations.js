@@ -4,6 +4,9 @@ export default {
   CHANGE_RAW_DATA(state, payload) {
     state.rawData = payload
   },
+  CLEAR_RAW_DATA(state) {
+    state.rawData = []
+  },
   SORT_DATA(state) {
     state.sortedData = state.rawData.sort()
   },
@@ -16,9 +19,7 @@ export default {
   ADJUST_DATA(state) {
     state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map(
       (e) => {
-        return e[1].map((f) => {
-          return f[2]
-        })
+        return e
       },
     )
   },

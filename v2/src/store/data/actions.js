@@ -1,10 +1,13 @@
 export default {
   changeRawData: ({ commit, dispatch }, payload) => {
-    commit('CHANGE_RAW_DATA', payload)
-    if (payload.length > 0 && payload.constructor === Array) {
+    if (payload && payload.length > 0 && payload.constructor === Array) {
+      commit('CHANGE_RAW_DATA', payload)
       dispatch('getTableHeader')
       dispatch('sortData')
     }
+  },
+  clearRawData: ({ commit }) => {
+    commit('CLEAR_RAW_DATA')
   },
   sortData: ({ commit, dispatch }) => {
     commit('SORT_DATA')

@@ -31,20 +31,40 @@ export default {
       file: null,
     }
   },
+  created() {
+    this.localGetData()
+  },
   methods: {
     clearFiles() {
       this.$refs['file-input'].reset()
       this.$store.dispatch('data/clearTableHeader')
-      this.$store.dispatch('data/changeRawData', {})
+      this.$store.dispatch('data/clearRawData')
+      localStorage.clear()
     },
     parseFile() {
       const element = this.$refs['file-input'].files[0]
       this.$papa.parse(element, {
         complete: (result) => {
           const payload = result.data.filter((el) => el.length > 2)
+          this.localStoreData(payload)
           this.$store.dispatch('data/changeRawData', payload)
         },
       })
+    },
+    localStoreData(data) {
+      if (process.browser) {
+        if (data && data !== []) {
+          data = JSON.stringify(data)
+          localStorage.setItem('rawData', data)
+        }
+      }
+    },
+    localGetData() {
+      if (process.browser) {
+        const ls = localStorage.getItem('rawData')
+        const payload = JSON.parse(ls)
+        this.$store.dispatch('data/changeRawData', payload)
+      }
     },
   },
 }
