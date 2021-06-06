@@ -44,6 +44,9 @@ export default {
     parseFile() {
       const element = this.$refs['file-input'].files[0]
       this.$papa.parse(element, {
+        transform: (elem) => {
+          return elem.replace(/,/g, '.')
+        },
         complete: (result) => {
           const payload = result.data.filter((el) => el.length > 2)
           this.localStoreData(payload)

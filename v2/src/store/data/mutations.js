@@ -19,7 +19,9 @@ export default {
   ADJUST_DATA(state) {
     state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map(
       (e) => {
-        return e
+        return e[1].map((f) => {
+          return f[2] - f[3]
+        })
       },
     )
   },
