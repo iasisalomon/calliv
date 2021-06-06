@@ -17,23 +17,7 @@ export default {
     return {
       // Note 'isActive' is left out and will not appear in the rendered table
       grouped: [],
-      fields: [
-        {
-          key: 'last_name',
-          sortable: true,
-        },
-        {
-          key: 'first_name',
-          sortable: false,
-        },
-        {
-          key: 'age',
-          label: 'Person age',
-          sortable: true,
-          // Variant applies to the whole column, including the header and footer
-          variant: 'danger',
-        },
-      ],
+      fields: this.wellRows,
       items: [
         {
           isActive: true,
