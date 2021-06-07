@@ -3,20 +3,14 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Well</th>
-          <th v-for="header in repetitionCount" :key="header" scope="col">
-            Lecture {{ header }}
+          <th v-for="header in tableHeader" :key="header" scope="col">
+            {{ header }}
           </th>
-          <th scope="col">Average</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in tableHeader" :key="index">
-          <th scope="row">
-            {{ extractedWells[index] }}
-          </th>
+        <tr v-for="(row, index) in rawData" :key="index">
           <td v-for="(col, idx) in row" :key="idx">{{ col }}</td>
-          <td>{{ adjustedValuesAverage[index] }}</td>
         </tr>
       </tbody>
     </table>
@@ -49,4 +43,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+tbody tr td:first-child {
+  font-weight: bold;
+}
+</style>

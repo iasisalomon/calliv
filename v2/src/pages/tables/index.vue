@@ -2,31 +2,21 @@
   <div class="container-fluid">
     <Header />
     <TableNav />
-    <AverageDataTable />
+    <SortedDataTable v-if="activeTableNav === 1" />
+    <AverageDataTable v-if="activeTableNav === 2" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
 import AverageDataTable from '@/components/tables/AverageDataTable'
+import SortedDataTable from '@/components/tables/SortedDataTable'
 import TableNav from '@/components/tables/TableNav'
 import { mapGetters } from 'vuex'
 export default {
-  components: { Header, AverageDataTable, TableNav },
+  components: { Header, SortedDataTable, AverageDataTable, TableNav },
   computed: {
-    ...mapGetters('data', [
-      'rawData',
-      'tableHeader',
-      'sortedData',
-      'groupedbyWellData',
-      'extractedWells',
-      'rawAdjustedValues',
-      'adjustedValuesAverage',
-      'wellRows',
-      'wellCols',
-      'chunkNumber',
-      'repetitionCount',
-    ]),
+    ...mapGetters('tables', ['activeTableNav']),
   },
 }
 </script>
