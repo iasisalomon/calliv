@@ -1,18 +1,18 @@
 <template>
   <div class="container-fluid">
     <Header />
-    <Table />
-    <DisplayData />
+    <TableNav />
+    <AverageDataTable />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
-import Table from '@/components/Table'
-import DisplayData from '@/components/DisplayData'
+import AverageDataTable from '@/components/tables/AverageDataTable'
+import TableNav from '@/components/tables/TableNav'
 import { mapGetters } from 'vuex'
 export default {
-  components: { Header, Table, DisplayData },
+  components: { Header, AverageDataTable, TableNav },
   computed: {
     ...mapGetters('data', [
       'rawData',

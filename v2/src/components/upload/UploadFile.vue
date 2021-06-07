@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import DisplayRawData from '@/components/DisplayRawData'
+import DisplayRawData from '@/components/upload/DisplayRawData'
 export default {
   components: {
     DisplayRawData,

@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- <b-table striped hover :items="items" :fields="fields"></b-table> -->
-    {{ rawAdjustedValues }}<br />
-    {{ adjustedValuesAverage }}<br />
-    {{ extractedWells }}<br />
-    {{ wellRows }}<br />
-    {{ wellCols }}<br />
-    {{ chunkNumber }}<br />
-    {{ repetitionCount }}<br />
+    <b-table striped hover :items="items" :fields="fields"></b-table>
   </div>
 </template>
 
