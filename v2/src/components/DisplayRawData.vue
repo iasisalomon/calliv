@@ -1,17 +1,16 @@
 <template>
   <div>
-    {{ tableheader }}
     <table class="table">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th v-for="header in tableheader" :key="header" scope="col">
+          <th v-for="header in tableHeader" :key="header" scope="col">
             {{ header }}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in rows" :key="index">
+        <tr v-for="(row, index) in rawData" :key="index">
           <th scope="row">
             {{ index }}
           </th>
@@ -23,21 +22,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  props: {
-    tableheader: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-    rows: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-  },
+  computed: { ...mapGetters('data', ['rawData', 'tableHeader']) },
 }
 </script>
 

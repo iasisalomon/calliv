@@ -11,6 +11,7 @@
         <b-navbar-nav>
           <NuxtLink to="/upload"><b-nav-text>Upload</b-nav-text></NuxtLink>
           <NuxtLink to="/tables"><b-nav-text>Tables</b-nav-text></NuxtLink>
+          <NuxtLink to="/matrixes"><b-nav-text>Matrixes</b-nav-text></NuxtLink>
           <NuxtLink to="/graphs"><b-nav-text>Graphs</b-nav-text></NuxtLink>
         </b-navbar-nav>
 

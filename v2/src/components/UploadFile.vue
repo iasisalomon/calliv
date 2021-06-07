@@ -16,15 +16,15 @@
         >
       </div>
     </div>
-    <DisplayData />
+    <DisplayRawData />
   </div>
 </template>
 
 <script>
-import DisplayData from '@/components/DisplayData'
+import DisplayRawData from '@/components/DisplayRawData'
 export default {
   components: {
-    DisplayData,
+    DisplayRawData,
   },
   data() {
     return {
