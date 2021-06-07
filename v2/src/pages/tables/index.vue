@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <Header />
     <Table />
-    <DisplayData :rows="rawAdjustedValues" :tableheader="wellCols" />
+    <DisplayData />
   </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
   computed: {
     ...mapGetters('data', [
       'rawData',
+      'tableHeader',
       'sortedData',
       'groupedbyWellData',
       'extractedWells',
@@ -24,6 +25,7 @@ export default {
       'wellRows',
       'wellCols',
       'chunkNumber',
+      'repetitionCount',
     ]),
   },
 }

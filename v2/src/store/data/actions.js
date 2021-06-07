@@ -26,6 +26,10 @@ export default {
   rawAdjustedValues: ({ commit, dispatch }) => {
     commit('ADJUST_RAW_VALUES')
     dispatch('rawAdjustedAverage')
+    dispatch('repetitionCount')
+  },
+  repetitionCount: ({ commit, dispatch }) => {
+    commit('GET_REPETITION_COUNT')
   },
   rawAdjustedAverage: ({ commit, dispatch }) => {
     commit('ADJUST_VALUES_AVERAGE')

@@ -3,6 +3,7 @@ export default () => ({
   tableHeader: [],
   sortedData: [],
   groupedbyWellData: {},
+  repetitionCount: null,
   extractedWells: [],
   rawAdjustedValues: [],
   adjustedValuesAverage: [],

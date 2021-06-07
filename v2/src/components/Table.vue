@@ -7,6 +7,7 @@
     {{ wellRows }}<br />
     {{ wellCols }}<br />
     {{ chunkNumber }}<br />
+    {{ repetitionCount }}<br />
   </div>
 </template>
 
@@ -43,6 +44,7 @@ export default {
       'wellRows',
       'wellCols',
       'chunkNumber',
+      'repetitionCount',
     ]),
   },
   created() {

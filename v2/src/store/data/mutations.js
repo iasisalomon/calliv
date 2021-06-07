@@ -25,6 +25,11 @@ export default {
       },
     )
   },
+  GET_REPETITION_COUNT(state) {
+    state.repetitionCount = state.rawAdjustedValues[0].map((el, index) => {
+      return index + 1
+    })
+  },
   ADJUST_VALUES_AVERAGE(state) {
     state.adjustedValuesAverage = state.rawAdjustedValues.map((e) => {
       return (

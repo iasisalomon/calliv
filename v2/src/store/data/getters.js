@@ -29,4 +29,7 @@ export default {
   chunkNumber: (state) => {
     return state.chunkNumber
   },
+  repetitionCount: (state) => {
+    return state.repetitionCount
+  },
 }

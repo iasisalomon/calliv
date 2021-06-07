@@ -1,21 +1,22 @@
 <template>
   <div>
-    {{ tableheader }}
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th v-for="header in tableheader" :key="header" scope="col">
-            {{ header }}
+          <th scope="col">Well</th>
+          <th v-for="header in repetitionCount" :key="header" scope="col">
+            Lecture {{ header }}
           </th>
+          <th scope="col">Average</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in rows" :key="index">
+        <tr v-for="(row, index) in rawAdjustedValues" :key="index">
           <th scope="row">
-            {{ index }}
+            {{ extractedWells[index] }}
           </th>
           <td v-for="(col, idx) in row" :key="idx">{{ col }}</td>
+          <td>{{ adjustedValuesAverage[index] }}</td>
         </tr>
       </tbody>
     </table>
@@ -23,20 +24,27 @@
 </template>
 
 <script>
+// <tbody>
+//   <tr v-for="(row, idx) in csvdata" :key="idx">
+//     <td v-for="(obj, i) in tableConfig" :key="i">{{ row[i] }}</td>
+//   </tr>
+// </tbody>
+import { mapGetters } from 'vuex'
 export default {
-  props: {
-    tableheader: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
-    rows: {
-      type: Array,
-      default() {
-        return []
-      },
-    },
+  computed: {
+    ...mapGetters('data', [
+      'rawData',
+      'tableHeader',
+      'sortedData',
+      'groupedbyWellData',
+      'extractedWells',
+      'rawAdjustedValues',
+      'adjustedValuesAverage',
+      'wellRows',
+      'wellCols',
+      'chunkNumber',
+      'repetitionCount',
+    ]),
   },
 }
 </script>
