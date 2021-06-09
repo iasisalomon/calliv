@@ -5,10 +5,27 @@ export default {
     state.rawData = payload
   },
   CHANGE_RAW_DATA_OBJECT(state, payload) {
-    state.rawDataObject = payload
+    //  remove empty values recursively
+    const removeEmpty = (obj) => {
+      Object.entries(obj).forEach(
+        ([key, val]) =>
+          (val && typeof val === 'object' && removeEmpty(val)) ||
+          ((val === null || val === '') && delete obj[key]),
+      )
+      return obj
+    }
+    let cleanPayload = removeEmpty(payload)
+    //  remove empty objects
+    cleanPayload = cleanPayload.filter(
+      (value) => Object.keys(value).length !== 0,
+    )
+    state.rawDataObject = cleanPayload
   },
   CLEAR_RAW_DATA(state) {
     state.rawData = []
+  },
+  CLEAR_RAW_DATA_OBJECT(state) {
+    state.rawDataObject = []
   },
   SORT_DATA(state) {
     state.sortedData = state.rawData.sort()

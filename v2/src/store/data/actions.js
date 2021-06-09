@@ -7,10 +7,15 @@ export default {
     }
   },
   changeRawDataObject: ({ commit, dispatch }, payload) => {
-    commit('CHANGE_RAW_DATA_OBJECT', payload)
+    if (payload && payload.length > 0 && payload.constructor === Array) {
+      commit('CHANGE_RAW_DATA_OBJECT', payload)
+    }
   },
   clearRawData: ({ commit }) => {
     commit('CLEAR_RAW_DATA')
+  },
+  clearRawDataObject: ({ commit }) => {
+    commit('CLEAR_RAW_DATA_OBJECT')
   },
   sortData: ({ commit, dispatch }) => {
     commit('SORT_DATA')

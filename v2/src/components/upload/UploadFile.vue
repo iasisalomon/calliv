@@ -39,6 +39,7 @@ export default {
       this.$refs['file-input'].reset()
       this.$store.dispatch('data/clearTableHeader')
       this.$store.dispatch('data/clearRawData')
+      this.$store.dispatch('data/clearRawDataObject')
       localStorage.clear()
     },
     parseFile() {
@@ -49,7 +50,7 @@ export default {
         },
         complete: (result) => {
           const payload = result.data.filter((el) => el.length > 2)
-          this.localStoreData(payload)
+          this.localStoreDataAsNestedArray(payload)
           this.$store.dispatch('data/changeRawData', payload)
         },
       })
@@ -57,11 +58,12 @@ export default {
         header: true,
         dynamicTyping: true,
         complete: (result) => {
+          this.localStoreDataArrayOfObjects(result.data)
           this.$store.dispatch('data/changeRawDataObject', result.data)
         },
       })
     },
-    localStoreData(data) {
+    localStoreDataAsNestedArray(data) {
       if (process.browser) {
         if (data && data !== []) {
           data = JSON.stringify(data)
@@ -69,11 +71,22 @@ export default {
         }
       }
     },
+    localStoreDataArrayOfObjects(data) {
+      if (process.browser) {
+        if (data && data !== []) {
+          data = JSON.stringify(data)
+          localStorage.setItem('rawDataObject', data)
+        }
+      }
+    },
     localGetData() {
       if (process.browser) {
-        const ls = localStorage.getItem('rawData')
-        const payload = JSON.parse(ls)
+        const lsDNA = localStorage.getItem('rawData')
+        const payload = JSON.parse(lsDNA)
         this.$store.dispatch('data/changeRawData', payload)
+        const lsAOO = localStorage.getItem('rawData')
+        const payloadObject = JSON.parse(lsAOO)
+        this.$store.dispatch('data/changeRawDataObject', payloadObject)
       }
     },
   },

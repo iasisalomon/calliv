@@ -18,6 +18,21 @@ export default {
   computed: {
     ...mapGetters('tables', ['activeTableNav']),
   },
+  created() {
+    this.localGetData()
+  },
+  methods: {
+    localGetData() {
+      if (process.browser) {
+        const lsDNA = localStorage.getItem('rawData')
+        const payload = JSON.parse(lsDNA)
+        this.$store.dispatch('data/changeRawData', payload)
+        const lsAOO = localStorage.getItem('rawData')
+        const payloadObject = JSON.parse(lsAOO)
+        this.$store.dispatch('data/changeRawDataObject', payloadObject)
+      }
+    },
+  },
 }
 </script>
 
