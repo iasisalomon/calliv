@@ -1,6 +1,9 @@
 import { groupBy } from 'lodash'
 
 export default {
+  CHANGE_FILE_NAME(state, payload) {
+    state.fileName = payload
+  },
   CHANGE_RAW_DATA(state, payload) {
     state.rawData = payload
   },
@@ -20,6 +23,9 @@ export default {
       (value) => Object.keys(value).length !== 0,
     )
     state.rawDataObject = cleanPayload
+  },
+  CLEAR_FILE_NAME(state) {
+    state.fileName = ''
   },
   CLEAR_RAW_DATA(state) {
     state.rawData = []

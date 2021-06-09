@@ -35,4 +35,7 @@ export default {
   rawDataObject: (state) => {
     return state.rawDataObject
   },
+  fileName: (state) => {
+    return state.fileName
+  },
 }

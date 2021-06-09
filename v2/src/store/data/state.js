@@ -1,4 +1,5 @@
 export default () => ({
+  fileName: '',
   rawData: [],
   tableHeader: [],
   sortedData: [],

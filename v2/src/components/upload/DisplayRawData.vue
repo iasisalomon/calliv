@@ -1,7 +1,6 @@
 <template>
   <div>
-    {{ rawDataObject }}
-    <table class="table">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -31,4 +30,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+tr:hover {
+  background-color: rgba(23, 162, 184, 0.3) !important;
+  cursor: pointer;
+}
+</style>

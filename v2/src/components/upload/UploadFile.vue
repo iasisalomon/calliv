@@ -40,10 +40,17 @@ export default {
       this.$store.dispatch('data/clearTableHeader')
       this.$store.dispatch('data/clearRawData')
       this.$store.dispatch('data/clearRawDataObject')
+      this.$store.dispatch('data/clearFileName')
       localStorage.clear()
     },
     parseFile() {
+      //  send file name to store
+      this.$store.dispatch('data/changeFileName', this.file.name)
+      // save file name to local storage
+      this.localStoreName(this.file.name)
+      //  select file from upload object
       const element = this.$refs['file-input'].files[0]
+      // parse as nested array
       this.$papa.parse(element, {
         transform: (elem) => {
           return elem.replace(/,/g, '.')
@@ -54,6 +61,7 @@ export default {
           this.$store.dispatch('data/changeRawData', payload)
         },
       })
+      // parse as array of objects
       this.$papa.parse(element, {
         header: true,
         dynamicTyping: true,
@@ -62,6 +70,14 @@ export default {
           this.$store.dispatch('data/changeRawDataObject', result.data)
         },
       })
+    },
+    localStoreName(data) {
+      if (process.browser) {
+        if (data && data !== '') {
+          data = JSON.stringify(data)
+          localStorage.setItem('fileName', data)
+        }
+      }
     },
     localStoreDataAsNestedArray(data) {
       if (process.browser) {
@@ -84,9 +100,14 @@ export default {
         const lsDNA = localStorage.getItem('rawData')
         const payload = JSON.parse(lsDNA)
         this.$store.dispatch('data/changeRawData', payload)
+
         const lsAOO = localStorage.getItem('rawDataObject')
         const payloadObject = JSON.parse(lsAOO)
         this.$store.dispatch('data/changeRawDataObject', payloadObject)
+
+        const name = localStorage.getItem('rawDataObject')
+        const fileName = JSON.parse(name)
+        this.$store.dispatch('data/changeFileName', fileName)
       }
     },
   },

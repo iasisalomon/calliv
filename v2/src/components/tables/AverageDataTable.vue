@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table">
+    <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th scope="col">Well</th>
@@ -49,4 +49,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+tr:hover {
+  background-color: rgba(23, 162, 184, 0.3) !important;
+  cursor: pointer;
+}
+</style>

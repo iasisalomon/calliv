@@ -1,4 +1,7 @@
 export default {
+  changeFileName: ({ commit, payload }) => {
+    commit('CHANGE_FILE_NAME', payload)
+  },
   changeRawData: ({ commit, dispatch }, payload) => {
     if (payload && payload.length > 0 && payload.constructor === Array) {
       commit('CHANGE_RAW_DATA', payload)
@@ -16,6 +19,9 @@ export default {
   },
   clearRawDataObject: ({ commit }) => {
     commit('CLEAR_RAW_DATA_OBJECT')
+  },
+  clearFileName: ({ commit }) => {
+    commit('CLEAR_FILE_NAME')
   },
   sortData: ({ commit, dispatch }) => {
     commit('SORT_DATA')
