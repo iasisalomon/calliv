@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-table striped hover :items="items" :fields="fields"></b-table>
+    {{ rawDataObject }}
+    <b-table striped hover :items="rawDataObject" :fields="fields"></b-table>
   </div>
 </template>
 
@@ -9,23 +10,28 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      // Note 'isActive' is left out and will not appear in the rendered table
-      grouped: [],
-      fields: this.wellRows,
-      items: [
+      fields: [
         {
-          isActive: true,
-          age: 40,
-          first_name: 'Dickerson',
-          last_name: 'Macdonald',
+          key: 'Well',
+          sortable: true,
         },
-        { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-        { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-        { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' },
+        {
+          key: 'Cycle',
+          sortable: true,
+        },
+        {
+          key: 'RED',
+          sortable: true,
+          variant: 'danger',
+        },
+        {
+          key: 'BLUE',
+          sortable: true,
+          variant: 'info',
+        },
       ],
     }
   },
-
   computed: {
     ...mapGetters('data', [
       'rawData',
@@ -38,10 +44,11 @@ export default {
       'wellCols',
       'chunkNumber',
       'repetitionCount',
+      'rawDataObject',
     ]),
   },
   created() {
-    this.localGetData()
+    // this.localGetData()
   },
   methods: {
     localGetData() {

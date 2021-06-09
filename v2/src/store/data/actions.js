@@ -6,6 +6,9 @@ export default {
       dispatch('sortData')
     }
   },
+  changeRawDataObject: ({ commit, dispatch }, payload) => {
+    commit('CHANGE_RAW_DATA_OBJECT', payload)
+  },
   clearRawData: ({ commit }) => {
     commit('CLEAR_RAW_DATA')
   },

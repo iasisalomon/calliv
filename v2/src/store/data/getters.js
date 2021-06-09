@@ -32,4 +32,7 @@ export default {
   repetitionCount: (state) => {
     return state.repetitionCount
   },
+  rawDataObject: (state) => {
+    return state.rawDataObject
+  },
 }

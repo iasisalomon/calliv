@@ -53,6 +53,13 @@ export default {
           this.$store.dispatch('data/changeRawData', payload)
         },
       })
+      this.$papa.parse(element, {
+        header: true,
+        dynamicTyping: true,
+        complete: (result) => {
+          this.$store.dispatch('data/changeRawDataObject', result.data)
+        },
+      })
     },
     localStoreData(data) {
       if (process.browser) {

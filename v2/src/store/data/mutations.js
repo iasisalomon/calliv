@@ -4,6 +4,9 @@ export default {
   CHANGE_RAW_DATA(state, payload) {
     state.rawData = payload
   },
+  CHANGE_RAW_DATA_OBJECT(state, payload) {
+    state.rawDataObject = payload
+  },
   CLEAR_RAW_DATA(state) {
     state.rawData = []
   },

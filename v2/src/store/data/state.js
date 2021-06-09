@@ -10,4 +10,5 @@ export default () => ({
   wellRows: [],
   wellCols: [],
   chunkNumber: null,
+  rawDataObject: [],
 })

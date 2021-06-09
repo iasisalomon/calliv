@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ rawDataObject }}
     <table class="table">
       <thead>
         <tr>
@@ -24,7 +25,9 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  computed: { ...mapGetters('data', ['rawData', 'tableHeader']) },
+  computed: {
+    ...mapGetters('data', ['rawData', 'tableHeader', 'rawDataObject']),
+  },
 }
 </script>
 
