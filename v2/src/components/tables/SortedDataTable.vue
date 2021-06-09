@@ -1,34 +1,39 @@
 <template>
   <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th v-for="header in tableHeader" :key="header" scope="col">
-            {{ header }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(row, index) in rawData" :key="index">
-          <td v-for="(col, idx) in row" :key="idx">{{ col }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <b-table striped hover :items="rawDataObject" :fields="fields"></b-table>
   </div>
 </template>
 
 <script>
-// <tbody>
-//   <tr v-for="(row, idx) in csvdata" :key="idx">
-//     <td v-for="(obj, i) in tableConfig" :key="i">{{ row[i] }}</td>
-//   </tr>
-// </tbody>
 import { mapGetters } from 'vuex'
 export default {
+  data() {
+    return {
+      fields: [
+        {
+          key: 'Well',
+          sortable: true,
+        },
+        {
+          key: 'Cycle',
+          sortable: true,
+        },
+        {
+          key: 'RED',
+          sortable: true,
+          variant: 'danger',
+        },
+        {
+          key: 'BLUE',
+          sortable: true,
+          variant: 'info',
+        },
+      ],
+    }
+  },
   computed: {
     ...mapGetters('data', [
       'rawData',
-      'tableHeader',
       'sortedData',
       'groupedbyWellData',
       'extractedWells',
@@ -38,13 +43,8 @@ export default {
       'wellCols',
       'chunkNumber',
       'repetitionCount',
+      'rawDataObject',
     ]),
   },
 }
 </script>
-
-<style>
-tbody tr td:first-child {
-  font-weight: bold;
-}
-</style>

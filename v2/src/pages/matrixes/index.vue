@@ -19,7 +19,7 @@ export default {
         const lsDNA = localStorage.getItem('rawData')
         const payload = JSON.parse(lsDNA)
         this.$store.dispatch('data/changeRawData', payload)
-        const lsAOO = localStorage.getItem('rawData')
+        const lsAOO = localStorage.getItem('rawDataObject')
         const payloadObject = JSON.parse(lsAOO)
         this.$store.dispatch('data/changeRawDataObject', payloadObject)
       }
