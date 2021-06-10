@@ -38,4 +38,7 @@ export default {
   fileName: (state) => {
     return state.fileName
   },
+  averageTableObject: (state) => {
+    return state.averageTableObject
+  },
 }

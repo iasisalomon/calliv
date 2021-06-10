@@ -12,4 +12,5 @@ export default () => ({
   wellCols: [],
   chunkNumber: null,
   rawDataObject: [],
+  averageTableObject: [],
 })

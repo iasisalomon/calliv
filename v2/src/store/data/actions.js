@@ -47,6 +47,10 @@ export default {
   },
   rawAdjustedAverage: ({ commit, dispatch }) => {
     commit('ADJUST_VALUES_AVERAGE')
+    dispatch('averageTableObject')
+  },
+  averageTableObject: ({ commit, dispatch }) => {
+    commit('AVERAGE_TABLE_OBJECT')
   },
   getTableHeader: ({ commit }) => {
     commit('GET_TABLE_HEADER')

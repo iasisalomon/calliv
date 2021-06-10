@@ -65,6 +65,22 @@ export default {
       )
     })
   },
+  AVERAGE_TABLE_OBJECT(state) {
+    // state.averageTableObject =
+    let object = state.rawAdjustedValues.map((box) => {
+      return box.map((el, index) => {
+        return { [index + 1]: el }
+      })
+    })
+    object = state.rawAdjustedValues.map((box, index) => {
+      return {
+        Well: state.extractedWells[index],
+        ...box,
+        Average: state.adjustedValuesAverage[index],
+      }
+    })
+    state.averageTableObject = object
+  },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()
   },
