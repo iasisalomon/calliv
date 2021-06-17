@@ -20,15 +20,18 @@ export default {
           sortable: true,
         },
         {
+          key: '0',
+          label: 'Lecture 1',
+          sortable: true,
+        },
+        {
           key: '1',
+          label: 'Lecture 2',
           sortable: true,
         },
         {
           key: '2',
-          sortable: true,
-        },
-        {
-          key: '3',
+          label: 'Lecture 3',
           sortable: true,
         },
         {

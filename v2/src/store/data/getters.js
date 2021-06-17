@@ -41,4 +41,7 @@ export default {
   averageTableObject: (state) => {
     return state.averageTableObject
   },
+  chunkAdjustedValues: (state) => {
+    return state.chunkAdjustedValues
+  },
 }

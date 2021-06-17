@@ -1,6 +1,10 @@
 <template>
   <div>
-    {{ rawDataObject }}
+    {{ chunkAdjustedValues }}<br />
+    <!-- {{ wellRows }}<br />
+    {{ wellCols }}<br />
+    {{ adjustedValuesAverage }}<br />
+    {{ averageTableObject }}<br /> -->
     <b-table striped hover :items="rawDataObject" :fields="fields"></b-table>
   </div>
 </template>
@@ -45,6 +49,8 @@ export default {
       'chunkNumber',
       'repetitionCount',
       'rawDataObject',
+      'averageTableObject',
+      'chunkAdjustedValues',
     ]),
   },
 }

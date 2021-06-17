@@ -7,10 +7,12 @@ export default () => ({
   repetitionCount: null,
   extractedWells: [],
   rawAdjustedValues: [],
+  chunkAdjustedValues: [],
   adjustedValuesAverage: [],
   wellRows: [],
   wellCols: [],
   chunkNumber: null,
   rawDataObject: [],
   averageTableObject: [],
+  matrixNative: [],
 })

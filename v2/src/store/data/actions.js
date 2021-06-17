@@ -47,10 +47,15 @@ export default {
   },
   rawAdjustedAverage: ({ commit, dispatch }) => {
     commit('ADJUST_VALUES_AVERAGE')
+    dispatch('chunkAdjustedValues')
     dispatch('averageTableObject')
   },
   averageTableObject: ({ commit, dispatch }) => {
     commit('AVERAGE_TABLE_OBJECT')
+    dispatch('matrixNative')
+  },
+  matrixNative: ({ commit, dispatch }) => {
+    commit('CREATE_MATRIX_NATIVE')
   },
   getTableHeader: ({ commit }) => {
     commit('GET_TABLE_HEADER')
@@ -67,5 +72,8 @@ export default {
   },
   getChunkNumber: ({ commit }) => {
     commit('GET_CHUNK_NUMBER')
+  },
+  chunkAdjustedValues: ({ commit }) => {
+    commit('CHUNK_VALUES_AVERAGE')
   },
 }

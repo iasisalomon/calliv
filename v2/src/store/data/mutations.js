@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash'
+import { groupBy, chunk } from 'lodash'
 
 export default {
   CHANGE_FILE_NAME(state, payload) {
@@ -65,14 +65,14 @@ export default {
       )
     })
   },
+  CHUNK_VALUES_AVERAGE(state) {
+    state.chunkAdjustedValues = chunk(
+      state.adjustedValuesAverage,
+      state.chunkNumber,
+    )
+  },
   AVERAGE_TABLE_OBJECT(state) {
-    // state.averageTableObject =
-    let object = state.rawAdjustedValues.map((box) => {
-      return box.map((el, index) => {
-        return { [index + 1]: el }
-      })
-    })
-    object = state.rawAdjustedValues.map((box, index) => {
+    const object = state.rawAdjustedValues.map((box, index) => {
       return {
         Well: state.extractedWells[index],
         ...box,
@@ -80,6 +80,9 @@ export default {
       }
     })
     state.averageTableObject = object
+  },
+  CREATE_MATRIX_NATIVE(state) {
+    state.matrixNative = []
   },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()
