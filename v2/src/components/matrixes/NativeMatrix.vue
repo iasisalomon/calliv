@@ -1,11 +1,6 @@
 <template>
   <div>
-    {{ chunkAdjustedValues }}<br />
-    <!-- {{ wellRows }}<br />
-    {{ wellCols }}<br />
-    {{ adjustedValuesAverage }}<br />
-    {{ averageTableObject }}<br /> -->
-    <b-table striped hover :items="rawDataObject" :fields="fields"></b-table>
+    <b-table striped hover :items="matrixNative" :fields="fields"></b-table>
   </div>
 </template>
 
@@ -16,22 +11,25 @@ export default {
     return {
       fields: [
         {
-          key: 'Well',
+          key: '0',
+          label: 'Well',
           sortable: true,
         },
         {
-          key: 'Cycle',
+          key: '1',
           sortable: true,
         },
         {
-          key: 'RED',
+          key: '2',
           sortable: true,
-          variant: 'danger',
         },
         {
-          key: 'BLUE',
+          key: '3',
           sortable: true,
-          variant: 'info',
+        },
+        {
+          key: '4',
+          sortable: true,
         },
       ],
     }
@@ -51,6 +49,7 @@ export default {
       'rawDataObject',
       'averageTableObject',
       'chunkAdjustedValues',
+      'matrixNative',
     ]),
   },
 }

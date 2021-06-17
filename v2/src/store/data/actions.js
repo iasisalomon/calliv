@@ -42,17 +42,15 @@ export default {
     dispatch('rawAdjustedAverage')
     dispatch('repetitionCount')
   },
-  repetitionCount: ({ commit, dispatch }) => {
+  repetitionCount: ({ commit }) => {
     commit('GET_REPETITION_COUNT')
   },
   rawAdjustedAverage: ({ commit, dispatch }) => {
     commit('ADJUST_VALUES_AVERAGE')
-    dispatch('chunkAdjustedValues')
     dispatch('averageTableObject')
   },
-  averageTableObject: ({ commit, dispatch }) => {
+  averageTableObject: ({ commit }) => {
     commit('AVERAGE_TABLE_OBJECT')
-    dispatch('matrixNative')
   },
   matrixNative: ({ commit, dispatch }) => {
     commit('CREATE_MATRIX_NATIVE')
@@ -70,8 +68,10 @@ export default {
     commit('OBTAIN_WELL_COLS')
     dispatch('getChunkNumber')
   },
-  getChunkNumber: ({ commit }) => {
+  getChunkNumber: ({ commit, dispatch }) => {
     commit('GET_CHUNK_NUMBER')
+    dispatch('chunkAdjustedValues')
+    dispatch('matrixNative')
   },
   chunkAdjustedValues: ({ commit }) => {
     commit('CHUNK_VALUES_AVERAGE')

@@ -82,7 +82,13 @@ export default {
     state.averageTableObject = object
   },
   CREATE_MATRIX_NATIVE(state) {
-    state.matrixNative = []
+    const assignLetters = []
+    for (let i = 0; i < state.wellRows.length; i++) {
+      const helper = state.chunkAdjustedValues[i]
+      const brelper = [state.wellRows[i], ...helper]
+      assignLetters.push(brelper)
+    }
+    state.matrixNative = assignLetters
   },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()

@@ -44,4 +44,7 @@ export default {
   chunkAdjustedValues: (state) => {
     return state.chunkAdjustedValues
   },
+  matrixNative: (state) => {
+    return state.matrixNative
+  },
 }
