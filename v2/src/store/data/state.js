@@ -8,6 +8,7 @@ export default () => ({
   extractedWells: [],
   rawAdjustedValues: [],
   chunkAdjustedValues: [],
+  getMinimumMeasureNoise: null,
   adjustedValuesAverage: [],
   wellRows: [],
   wellCols: [],
@@ -15,4 +16,5 @@ export default () => ({
   rawDataObject: [],
   averageTableObject: [],
   matrixNative: [],
+  matrixZero: [],
 })

@@ -47,4 +47,10 @@ export default {
   matrixNative: (state) => {
     return state.matrixNative
   },
+  matrixZero: (state) => {
+    return state.matrixZero
+  },
+  getMinimumMeasureNoise: (state) => {
+    return state.getMinimumMeasureNoise
+  },
 }

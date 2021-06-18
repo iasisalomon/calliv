@@ -42,18 +42,38 @@ export default {
     dispatch('rawAdjustedAverage')
     dispatch('repetitionCount')
   },
-  repetitionCount: ({ commit }) => {
-    commit('GET_REPETITION_COUNT')
+  obtainWellCols: ({ commit, dispatch }) => {
+    commit('OBTAIN_WELL_COLS')
+    dispatch('getChunkNumber')
+  },
+  getChunkNumber: ({ commit, dispatch }) => {
+    commit('GET_CHUNK_NUMBER')
+    dispatch('chunkAdjustedValues')
+  },
+  chunkAdjustedValues: ({ commit, dispatch }) => {
+    commit('CHUNK_VALUES_AVERAGE')
+    dispatch('matrixNative')
+    dispatch('getMinimumMeasureNoise')
   },
   rawAdjustedAverage: ({ commit, dispatch }) => {
     commit('ADJUST_VALUES_AVERAGE')
     dispatch('averageTableObject')
   },
-  averageTableObject: ({ commit }) => {
-    commit('AVERAGE_TABLE_OBJECT')
-  },
   matrixNative: ({ commit, dispatch }) => {
     commit('CREATE_MATRIX_NATIVE')
+    dispatch('matrixZero')
+  },
+  matrixZero: ({ commit }) => {
+    commit('CREATE_MATRIX_ZERO')
+  },
+  getMinimumMeasureNoise: ({ commit }) => {
+    commit('GET_MINIMUM_MEASURE_NOISE')
+  },
+  repetitionCount: ({ commit }) => {
+    commit('GET_REPETITION_COUNT')
+  },
+  averageTableObject: ({ commit }) => {
+    commit('AVERAGE_TABLE_OBJECT')
   },
   getTableHeader: ({ commit }) => {
     commit('GET_TABLE_HEADER')
@@ -63,17 +83,5 @@ export default {
   },
   obtainWellRows: ({ commit }) => {
     commit('OBTAIN_WELL_ROWS')
-  },
-  obtainWellCols: ({ commit, dispatch }) => {
-    commit('OBTAIN_WELL_COLS')
-    dispatch('getChunkNumber')
-  },
-  getChunkNumber: ({ commit, dispatch }) => {
-    commit('GET_CHUNK_NUMBER')
-    dispatch('chunkAdjustedValues')
-    dispatch('matrixNative')
-  },
-  chunkAdjustedValues: ({ commit }) => {
-    commit('CHUNK_VALUES_AVERAGE')
   },
 }

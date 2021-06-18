@@ -1,4 +1,4 @@
-import { groupBy, chunk } from 'lodash'
+import { groupBy, chunk, min } from 'lodash'
 
 export default {
   CHANGE_FILE_NAME(state, payload) {
@@ -71,6 +71,16 @@ export default {
       state.chunkNumber,
     )
   },
+  GET_MINIMUM_MEASURE_NOISE(state) {
+    state.getMinimumMeasureNoise = state.chunkAdjustedValues.map((el) => {
+      let a = 0
+      if (el[0] < a) {
+        a = el[0]
+      }
+      return a
+    })
+    state.getMinimumMeasureNoise = min(state.getMinimumMeasureNoise)
+  },
   AVERAGE_TABLE_OBJECT(state) {
     const object = state.rawAdjustedValues.map((box, index) => {
       return {
@@ -89,6 +99,26 @@ export default {
       assignLetters.push(brelper)
     }
     state.matrixNative = assignLetters
+  },
+  CREATE_MATRIX_ZERO(state) {
+    // subtract min number from each average
+    const arrayZero = state.adjustedValuesAverage.map((el) => {
+      if (el - state.getMinimumMeasureNoise < 0) {
+        return 0
+      } else {
+        return el - state.getMinimumMeasureNoise
+      }
+    })
+    // chunk zero average
+    const chunkArrayZero = chunk(arrayZero, state.chunkNumber)
+    // create fields for table
+    const assignLetters = []
+    for (let i = 0; i < state.wellRows.length; i++) {
+      const helper = chunkArrayZero[i]
+      const brelper = [state.wellRows[i], ...helper]
+      assignLetters.push(brelper)
+    }
+    state.matrixZero = assignLetters
   },
   GET_TABLE_HEADER(state) {
     state.tableHeader = state.rawData.shift()
