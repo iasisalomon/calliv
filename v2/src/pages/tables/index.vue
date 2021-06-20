@@ -11,7 +11,7 @@
 import Header from '@/components/Header'
 import AverageDataTable from '@/components/tables/AverageDataTable'
 import SortedDataTable from '@/components/tables/SortedDataTable'
-import TableNav from '@/components/TableNav'
+import TableNav from '@/components/tables/TableNav'
 import { mapGetters } from 'vuex'
 export default {
   components: { Header, SortedDataTable, AverageDataTable, TableNav },

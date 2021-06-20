@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{ matrixZero }} <br />
-    {{ getMinimumMeasureNoise }} <br />
     <b-table striped hover :items="matrixZero" :fields="fields"></b-table>
   </div>
 </template>

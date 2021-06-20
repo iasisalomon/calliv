@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-nav pills>
-      <b-nav-item :active="activeTableNav === 1" @click="activeSortedData()">{{
+      <b-nav-item :active="activeTableNav === 1" @click="active1()">{{
         item1
       }}</b-nav-item>
-      <b-nav-item :active="activeTableNav === 2" @click="activeDataAverage()">{{
+      <b-nav-item :active="activeTableNav === 2" @click="active2()">{{
         item2
       }}</b-nav-item>
     </b-nav>
@@ -29,14 +29,14 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('tables', ['activeTableNav']),
+    ...mapGetters('matrixes', ['activeTableNav']),
   },
   methods: {
-    activeSortedData() {
-      this.$store.dispatch('tables/changeActiveTableNav', 1)
+    active1() {
+      this.$store.dispatch('matrixes' + '/changeActiveTableNav', 1)
     },
-    activeDataAverage() {
-      this.$store.dispatch('tables/changeActiveTableNav', 2)
+    active2() {
+      this.$store.dispatch('matrixes' + '/changeActiveTableNav', 2)
     },
   },
 }
