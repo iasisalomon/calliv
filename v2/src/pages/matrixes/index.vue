@@ -1,15 +1,21 @@
 <template>
   <div class="container-fluid">
     <Header />
-    <NativeMatrix />
+    <TableNav item1="Native Matrix" item2="Zero Matrix" />
+    <NativeMatrix v-if="activeTableNav === 1" />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
 import NativeMatrix from '@/components/matrixes/NativeMatrix'
+import TableNav from '@/components/TableNav'
+import { mapGetters } from 'vuex'
 export default {
-  components: { Header, NativeMatrix },
+  components: { Header, NativeMatrix, TableNav },
+  computed: {
+    ...mapGetters('matrixes', ['activeTableNav']),
+  },
   created() {
     this.localGetData()
   },

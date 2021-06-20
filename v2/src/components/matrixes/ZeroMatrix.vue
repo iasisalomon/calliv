@@ -1,8 +1,12 @@
 <template>
   <div>
+<<<<<<< HEAD
     {{ matrixZero }} <br />
     {{ getMinimumMeasureNoise }} <br />
     <b-table striped hover :items="matrixZero" :fields="fields"></b-table>
+=======
+    <b-table striped hover :items="matrixNative" :fields="fields"></b-table>
+>>>>>>> a1eb876bee7f2bd767874a519d646dfb74319d27
   </div>
 </template>
 
@@ -52,8 +56,11 @@ export default {
       'averageTableObject',
       'chunkAdjustedValues',
       'matrixNative',
+<<<<<<< HEAD
       'matrixZero',
       'getMinimumMeasureNoise',
+=======
+>>>>>>> a1eb876bee7f2bd767874a519d646dfb74319d27
     ]),
   },
 }
