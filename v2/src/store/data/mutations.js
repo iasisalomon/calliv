@@ -141,4 +141,7 @@ export default {
   GET_CHUNK_NUMBER(state) {
     state.chunkNumber = state.wellCols.length
   },
+  WELL_ROWS_VALUES(state, payload) {
+    state.wellRowsValues = payload
+  },
 }
