@@ -15,6 +15,7 @@
       ></b-form-input>
 
       {{ nameState }}
+      {{ wellRowsValues }}
 
       <!-- This will only be shown if the preceding input has an invalid state -->
       <b-form-invalid-feedback id="input-live-feedback">
@@ -23,9 +24,9 @@
     </div>
 
     <div class="row m-0 p-0 align-self-center">
-      <b-button class="mr-1" type="submit" variant="primary">{{
-        button
-      }}</b-button>
+      <b-button class="mr-1" type="submit" variant="primary" @click="formClick">
+        {{ button }}
+      </b-button>
       <b-button class="ml-1" type="reset" variant="danger">Reset</b-button>
     </div>
   </div>
@@ -52,14 +53,6 @@ export default {
         }
       })
     },
-    methods: {
-      formClick() {
-        this.button !== 'Lock'
-          ? (this.button = 'Unlock')
-          : (this.button = 'Lock')
-        this.$store.dispatch('data/changeRawDataObject', result.data)
-      },
-    },
     ...mapGetters('data', [
       'rawData',
       'sortedData',
@@ -77,7 +70,14 @@ export default {
       'matrixNative',
       'matrixZero',
       'getMinimumMeasureNoise',
+      'wellRowsValues',
     ]),
+  },
+  methods: {
+    formClick() {
+      this.button === 'Lock' ? (this.button = 'Unlock') : (this.button = 'Lock')
+      this.$store.dispatch('data/wellRowsValues', [1, 2, 3])
+    },
   },
 }
 </script>
