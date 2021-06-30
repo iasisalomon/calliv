@@ -36,30 +36,30 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    '@nuxtjs/firebase',
+    // '@nuxtjs/firebase',
   ],
-  firebase: {
-    config: {
-      apiKey: 'AIzaSyClJNaUwwL7Fd3E0etC2LNh6sPr4elN_Vw',
-      authDomain: 'calliv-44c81.firebaseapp.com',
-      projectId: 'calliv-44c81',
-      storageBucket: 'calliv-44c81.appspot.com',
-      messagingSenderId: '1074643316666',
-      appId: '1:1074643316666:web:03fc89716215f588693783',
-      measurementId: 'G-E8V3CY5D45',
-    },
-    services: {
-      auth: true,
-      firestore: true,
-      functions: true,
-      storage: true,
-      database: true,
-      messaging: true,
-      performance: true,
-      analytics: true,
-      remoteConfig: true,
-    },
-  },
+  // firebase: {
+  //   config: {
+  //     apiKey: 'AIzaSyClJNaUwwL7Fd3E0etC2LNh6sPr4elN_Vw',
+  //     authDomain: 'calliv-44c81.firebaseapp.com',
+  //     projectId: 'calliv-44c81',
+  //     storageBucket: 'calliv-44c81.appspot.com',
+  //     messagingSenderId: '1074643316666',
+  //     appId: '1:1074643316666:web:03fc89716215f588693783',
+  //     measurementId: 'G-E8V3CY5D45',
+  //   },
+  //   services: {
+  //     auth: true,
+  //     firestore: true,
+  //     functions: true,
+  //     storage: true,
+  //     database: true,
+  //     messaging: true,
+  //     performance: true,
+  //     analytics: true,
+  //     remoteConfig: true,
+  //   },
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   // SourceDir: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-srcdir

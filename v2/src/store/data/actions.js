@@ -84,7 +84,7 @@ export default {
   obtainWellRows: ({ commit }) => {
     commit('OBTAIN_WELL_ROWS')
   },
-  wellRowsValues: ({ commit, payload }) => {
+  wellRowsValues: ({ commit }, payload) => {
     commit('WELL_ROWS_VALUES', payload)
   },
 }
