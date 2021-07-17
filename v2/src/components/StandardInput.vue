@@ -86,14 +86,14 @@ export default {
       'matrixNative',
       'matrixZero',
       'getMinimumMeasureNoise',
-      'wellRowsValues',
+      'standardInputs',
     ]),
   },
   methods: {
     formClick() {
       this.button = 'Locked'
       this.$store.dispatch(
-        'data' + '/wellRowsValues',
+        'data' + '/standardInputs',
         JSON.parse(JSON.stringify(this.validation)),
       )
     },
@@ -101,7 +101,7 @@ export default {
       this.validation = []
       this.button = 'Lock'
       this.$store.dispatch(
-        'data' + '/wellRowsValues',
+        'data' + '/standardInputs',
         JSON.parse(JSON.stringify(this.validation)),
       )
     },

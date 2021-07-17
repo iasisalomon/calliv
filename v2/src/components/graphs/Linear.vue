@@ -1,7 +1,7 @@
 <template>
   <div>
     {{ matrixZero }} <br />
-    {{ wellRowsValues }} <br />
+    {{ standardInputs }} <br />
     {{ getMinimumMeasureNoise }} <br />
     <highcharts :options="chartOptions"></highcharts>
   </div>
@@ -26,7 +26,7 @@ export default {
     ...mapGetters('data', [
       'matrixZero',
       'getMinimumMeasureNoise',
-      'wellRowsValues',
+      'standardInputs',
     ]),
   },
 }

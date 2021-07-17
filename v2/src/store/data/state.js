@@ -17,5 +17,5 @@ export default () => ({
   averageTableObject: [],
   matrixNative: [],
   matrixZero: [],
-  wellRowsValues: [],
+  standardInputs: [],
 })

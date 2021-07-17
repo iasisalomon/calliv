@@ -53,7 +53,7 @@ export default {
   getMinimumMeasureNoise: (state) => {
     return state.getMinimumMeasureNoise
   },
-  wellRowsValues: (state) => {
-    return state.wellRowsValues
+  standardInputs: (state) => {
+    return state.standardInputs
   },
 }

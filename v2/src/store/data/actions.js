@@ -84,7 +84,9 @@ export default {
   obtainWellRows: ({ commit }) => {
     commit('OBTAIN_WELL_ROWS')
   },
-  wellRowsValues: ({ commit }, payload) => {
-    commit('WELL_ROWS_VALUES', payload)
+  standardInputs: ({ commit }, payload) => {
+    localStorage.setItem('standardInputs', payload)
+    payload = localStorage.getItem('standardInputs')
+    commit('STANDARD_INPUTS', payload)
   },
 }
