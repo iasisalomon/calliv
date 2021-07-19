@@ -3,25 +3,13 @@
     {{ matrixZero }} <br />
     {{ standardInputs }} <br />
     {{ getMinimumMeasureNoise }} <br />
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="standardInputs"></highcharts>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  data() {
-    return {
-      chartOptions: {
-        series: [
-          {
-            data: this.standardInputs,
-            type: 'scatter',
-          },
-        ],
-      },
-    }
-  },
   computed: {
     ...mapGetters('data', [
       'matrixZero',

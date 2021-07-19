@@ -152,6 +152,6 @@ export default {
       payload = JSON.parse(localStorage.getItem('standardInputs'))
       console.log('else :>> ', payload)
     }
-    state.standardInputs = payload
+    state.standardInputs.series[0].data = payload
   },
 }
