@@ -142,6 +142,16 @@ export default {
     state.chunkNumber = state.wellCols.length
   },
   STANDARD_INPUTS(state, payload) {
+    if (payload) {
+      payload = payload.map((el) => {
+        return Number(el)
+      })
+      localStorage.setItem('standardInputs', JSON.stringify(payload))
+      console.log('if :>> ', payload)
+    } else {
+      payload = JSON.parse(localStorage.getItem('standardInputs'))
+      console.log('else :>> ', payload)
+    }
     state.standardInputs = payload
   },
 }

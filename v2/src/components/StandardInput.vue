@@ -92,18 +92,12 @@ export default {
   methods: {
     formClick() {
       this.button = 'Locked'
-      this.$store.dispatch(
-        'data' + '/standardInputs',
-        JSON.parse(JSON.stringify(this.validation)),
-      )
+      this.$store.dispatch('data' + '/standardInputs', this.validation)
     },
     resetForm() {
       this.validation = []
       this.button = 'Lock'
-      this.$store.dispatch(
-        'data' + '/standardInputs',
-        JSON.parse(JSON.stringify(this.validation)),
-      )
+      this.$store.dispatch('data' + '/standardInputs', this.validation)
     },
     debouncedGetAnswer() {},
   },

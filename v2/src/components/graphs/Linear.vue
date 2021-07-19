@@ -15,7 +15,7 @@ export default {
       chartOptions: {
         series: [
           {
-            data: [1, 2, 3],
+            data: this.standardInputs,
             type: 'scatter',
           },
         ],

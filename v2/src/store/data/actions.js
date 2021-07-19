@@ -62,11 +62,12 @@ export default {
   matrixNative: ({ commit, dispatch }) => {
     commit('CREATE_MATRIX_NATIVE')
     dispatch('matrixZero')
+    dispatch('standardInputs')
   },
-  matrixZero: ({ commit }) => {
+  matrixZero: ({ commit, dispatch }) => {
     commit('CREATE_MATRIX_ZERO')
   },
-  getMinimumMeasureNoise: ({ commit }) => {
+  getMinimumMeasureNoise: ({ commit, dispatch }) => {
     commit('GET_MINIMUM_MEASURE_NOISE')
   },
   repetitionCount: ({ commit }) => {
@@ -85,8 +86,6 @@ export default {
     commit('OBTAIN_WELL_ROWS')
   },
   standardInputs: ({ commit }, payload) => {
-    localStorage.setItem('standardInputs', payload)
-    payload = localStorage.getItem('standardInputs')
     commit('STANDARD_INPUTS', payload)
   },
 }
