@@ -85,7 +85,11 @@ export default {
   obtainWellRows: ({ commit }) => {
     commit('OBTAIN_WELL_ROWS')
   },
-  standardInputs: ({ commit }, payload) => {
+  standardInputs: ({ commit, dispatch }, payload) => {
     commit('STANDARD_INPUTS', payload)
+    dispatch('plotData')
+  },
+  plotData: ({ commit }, payload) => {
+    commit('PLOT_DATA', payload)
   },
 }

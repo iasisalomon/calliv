@@ -17,10 +17,15 @@ export default () => ({
   averageTableObject: [],
   matrixNative: [],
   matrixZero: [],
-  standardInputs: {
+  standardInputs: [],
+  tableConfig: {
     series: [
       {
-        data: [1, 2, 3, 4, 5, 6],
+        data: [
+          [1, 1],
+          [2, 2],
+          [3, 3],
+        ],
         type: 'scatter',
       },
     ],

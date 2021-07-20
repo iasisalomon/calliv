@@ -147,11 +147,12 @@ export default {
         return Number(el)
       })
       localStorage.setItem('standardInputs', JSON.stringify(payload))
-      console.log('if :>> ', payload)
     } else {
       payload = JSON.parse(localStorage.getItem('standardInputs'))
-      console.log('else :>> ', payload)
     }
-    state.standardInputs.series[0].data = payload
+    state.standardInputs = payload
+  },
+  PLOT_DATA(state) {
+    state.chunkNumber = state.wellCols.length
   },
 }
