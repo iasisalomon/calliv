@@ -1,9 +1,13 @@
 <template>
-  <div>
+  <div class="row justify-content-center">
     {{ matrixZero }} <br />
     {{ standardInputs }} <br />
+    {{ standardGraph }} <br />
     {{ getMinimumMeasureNoise }} <br />
-    <highcharts :options="standardInputs"></highcharts>
+    {{ tableConfig }} <br />
+    <div class="col-6">
+      <highcharts :options="tableConfig"></highcharts>
+    </div>
   </div>
 </template>
 
@@ -15,6 +19,8 @@ export default {
       'matrixZero',
       'getMinimumMeasureNoise',
       'standardInputs',
+      'standardGraph',
+      'tableConfig',
     ]),
   },
 }

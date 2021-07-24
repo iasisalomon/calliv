@@ -56,4 +56,10 @@ export default {
   standardInputs: (state) => {
     return state.standardInputs
   },
+  standardGraph: (state) => {
+    return state.standardGraph
+  },
+  tableConfig: (state) => {
+    return state.tableConfig
+  },
 }

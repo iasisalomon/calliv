@@ -152,6 +152,27 @@ export default {
     }
     state.standardInputs = payload
   },
+  STANDARD_GRAPH(state, payload) {
+    if (payload) {
+      payload = payload.map((el) => {
+        return Number(el)
+      })
+      // assigning values from the matrixZero corresponding to standard
+      let asd = state.matrixZero
+      asd = asd.map((el, index) => {
+        return el[1]
+      })
+      // setting [standard, value] to insert in graph
+      payload = payload.map((el, index) => {
+        return [el, asd[index]]
+      })
+      localStorage.setItem('standardGraph', JSON.stringify(payload))
+    } else {
+      payload = JSON.parse(localStorage.getItem('standardGraph'))
+    }
+    state.standardGraph = payload
+    state.tableConfig.series[0].data = state.standardGraph
+  },
   PLOT_DATA(state) {
     state.chunkNumber = state.wellCols.length
   },

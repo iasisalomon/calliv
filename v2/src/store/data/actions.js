@@ -88,6 +88,10 @@ export default {
   standardInputs: ({ commit, dispatch }, payload) => {
     commit('STANDARD_INPUTS', payload)
     dispatch('plotData')
+    dispatch('standardGraph', payload)
+  },
+  standardGraph: ({ commit }, payload) => {
+    commit('STANDARD_GRAPH', payload)
   },
   plotData: ({ commit }, payload) => {
     commit('PLOT_DATA', payload)

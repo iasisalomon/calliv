@@ -18,6 +18,7 @@ export default () => ({
   matrixNative: [],
   matrixZero: [],
   standardInputs: [],
+  standardGraph: [],
   tableConfig: {
     series: [
       {
