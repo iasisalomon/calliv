@@ -21,6 +21,7 @@ export default {
     { src: '~/plugins/papa-parse.js', mode: 'client' },
     { src: '~/plugins/highcharts.js', mode: 'client' },
     { src: '~/plugins/lodash.js' },
+    { src: '~/plugins/fitLinear.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

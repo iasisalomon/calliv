@@ -5,8 +5,12 @@
     {{ standardGraph }} <br />
     {{ getMinimumMeasureNoise }} <br />
     {{ tableConfig }} <br />
+    {{ getLine }} <br />
     <div class="col-6">
       <highcharts :options="tableConfig"></highcharts>
+    </div>
+    <div>
+      <button @click="getLine">GET LINEAR</button>
     </div>
   </div>
 </template>
@@ -22,6 +26,12 @@ export default {
       'standardGraph',
       'tableConfig',
     ]),
+    getLine() {
+      return this.$fitLinear(
+        [1, 2, 3, 4, 5, 6, 7, 8],
+        [2, 4, 6, 8, 10, 12, 14, 16],
+      )
+    },
   },
 }
 </script>
