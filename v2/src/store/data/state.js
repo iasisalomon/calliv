@@ -1,5 +1,5 @@
 export default () => ({
-  fileName: '',
+  fileName: "",
   rawData: [],
   tableHeader: [],
   sortedData: [],
@@ -27,7 +27,7 @@ export default () => ({
           [2, 2],
           [3, 3],
         ],
-        type: 'scatter',
+        type: "scatter",
       },
     ],
   },

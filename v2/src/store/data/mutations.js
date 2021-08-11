@@ -1,4 +1,4 @@
-import { groupBy, chunk, min } from 'lodash'
+import { groupBy, chunk, min } from "lodash"
 
 export default {
   CHANGE_FILE_NAME(state, payload) {
@@ -11,21 +11,17 @@ export default {
     //  remove empty values recursively
     const removeEmpty = (obj) => {
       Object.entries(obj).forEach(
-        ([key, val]) =>
-          (val && typeof val === 'object' && removeEmpty(val)) ||
-          ((val === null || val === '') && delete obj[key]),
+        ([key, val]) => (val && typeof val === "object" && removeEmpty(val)) || ((val === null || val === "") && delete obj[key]),
       )
       return obj
     }
     let cleanPayload = removeEmpty(payload)
     //  remove empty objects
-    cleanPayload = cleanPayload.filter(
-      (value) => Object.keys(value).length !== 0,
-    )
+    cleanPayload = cleanPayload.filter((value) => Object.keys(value).length !== 0)
     state.rawDataObject = cleanPayload
   },
   CLEAR_FILE_NAME(state) {
-    state.fileName = ''
+    state.fileName = ""
   },
   CLEAR_RAW_DATA(state) {
     state.rawData = []
@@ -43,13 +39,11 @@ export default {
     state.extractedWells = Object.keys(state.groupedbyWellData)
   },
   ADJUST_RAW_VALUES(state) {
-    state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map(
-      (e) => {
-        return e[1].map((f) => {
-          return f[2] - f[3]
-        })
-      },
-    )
+    state.rawAdjustedValues = Object.entries(state.groupedbyWellData).map((e) => {
+      return e[1].map((f) => {
+        return f[2] - f[3]
+      })
+    })
   },
   GET_REPETITION_COUNT(state) {
     state.repetitionCount = state.rawAdjustedValues[0].map((el, index) => {
@@ -66,10 +60,7 @@ export default {
     })
   },
   CHUNK_VALUES_AVERAGE(state) {
-    state.chunkAdjustedValues = chunk(
-      state.adjustedValuesAverage,
-      state.chunkNumber,
-    )
+    state.chunkAdjustedValues = chunk(state.adjustedValuesAverage, state.chunkNumber)
   },
   GET_MINIMUM_MEASURE_NOISE(state) {
     state.getMinimumMeasureNoise = state.chunkAdjustedValues.map((el) => {
@@ -128,13 +119,13 @@ export default {
   },
   OBTAIN_WELL_ROWS(state) {
     state.wellRows = state.extractedWells.map((el) => {
-      return el.replace(/[^a-zA-Z]/, '')
+      return el.replace(/[^a-zA-Z]/, "")
     })
     state.wellRows = [...new Set(state.wellRows)]
   },
   OBTAIN_WELL_COLS(state) {
     state.wellCols = state.extractedWells.map((el) => {
-      return el.replace(/[a-zA-Z]/, '')
+      return el.replace(/[a-zA-Z]/, "")
     })
     state.wellCols = [...new Set(state.wellCols)]
   },
@@ -146,9 +137,9 @@ export default {
       payload = payload.map((el) => {
         return Number(el)
       })
-      localStorage.setItem('standardInputs', JSON.stringify(payload))
+      localStorage.setItem("standardInputs", JSON.stringify(payload))
     } else {
-      payload = JSON.parse(localStorage.getItem('standardInputs'))
+      payload = JSON.parse(localStorage.getItem("standardInputs"))
     }
     state.standardInputs = payload
   },
@@ -166,9 +157,9 @@ export default {
       payload = payload.map((el, index) => {
         return [el, asd[index]]
       })
-      localStorage.setItem('standardGraph', JSON.stringify(payload))
+      localStorage.setItem("standardGraph", JSON.stringify(payload))
     } else {
-      payload = JSON.parse(localStorage.getItem('standardGraph'))
+      payload = JSON.parse(localStorage.getItem("standardGraph"))
     }
     state.standardGraph = payload
     state.tableConfig.series[0].data = state.standardGraph

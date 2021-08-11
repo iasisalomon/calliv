@@ -1,36 +1,24 @@
 <template>
   <div class="row justify-content-center">
-    {{ matrixZero }} <br />
+    <!-- {{ matrixZero }} <br />
     {{ standardInputs }} <br />
+    {{ getMinimumMeasureNoise }} <br /> -->
     {{ standardGraph }} <br />
-    {{ getMinimumMeasureNoise }} <br />
     {{ tableConfig }} <br />
     {{ getLine }} <br />
     <div class="col-6">
       <highcharts :options="tableConfig"></highcharts>
     </div>
-    <div>
-      <button @click="getLine">GET LINEAR</button>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 export default {
   computed: {
-    ...mapGetters('data', [
-      'matrixZero',
-      'getMinimumMeasureNoise',
-      'standardInputs',
-      'standardGraph',
-      'tableConfig',
-    ]),
+    ...mapGetters("data", ["matrixZero", "getMinimumMeasureNoise", "standardInputs", "standardGraph", "tableConfig"]),
     getLine() {
-      return this.$fitLinear(
-        [1, 2, 3, 4, 5, 6, 7, 8],
-        [2, 4, 6, 8, 10, 12, 14, 16],
-      )
+      return this.$fitLinear([1, 2, 3, 4, 5, 6, 7, 8], [2, 4, 6, 8, 10, 12, 14, 16])
     },
   },
 }
