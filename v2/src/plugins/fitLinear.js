@@ -9,9 +9,17 @@ export default ({ app }, inject) => {
     // optimizer constants
     const LEARNING_RATE = 0.5
     const OPTIMIZER = tf.train.sgd(LEARNING_RATE)
+    const ITERATIONS = process.env.ITERATIONS || 1000
     // predict function
     const predict = (xVals) => M.mul(xVals).add(B)
     const loss = (pred, label) => pred.sub(label).square().mean()
-    return ['m', 'b']
+    // adjustment
+    for (let j = 0; j < ITERATIONS; j++) {
+      OPTIMIZER.minimize(() => loss(predict(xVals), yVals))
+    }
+
+    const m = M.dataSync()[0]
+    const b = B.dataSync()[0]
+    return [m, b]
   })
 }
