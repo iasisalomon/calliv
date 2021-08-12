@@ -7,9 +7,9 @@ export default ({ app }, inject) => {
     const M = tf.variable(tf.scalar(Math.random()))
     const B = tf.variable(tf.scalar(Math.random()))
     // optimizer constants
-    const LEARNING_RATE = 0.5
+    const LEARNING_RATE = 0.01
     const OPTIMIZER = tf.train.sgd(LEARNING_RATE)
-    const ITERATIONS = process.env.ITERATIONS || 10
+    const ITERATIONS = process.env.ITERATIONS || 1000
     // predict function
     function predict(xVals) {
       return tf.tidy(function () {
