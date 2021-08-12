@@ -11,7 +11,7 @@ export default {
     //  remove empty values recursively
     const removeEmpty = (obj) => {
       Object.entries(obj).forEach(
-        ([key, val]) => (val && typeof val === "object" && removeEmpty(val)) || ((val === null || val === "") && delete obj[key]),
+        ([key, val]) => (val && typeof val === "object" && removeEmpty(val)) || ((val === null || val === "") && delete obj[key])
       )
       return obj
     }
