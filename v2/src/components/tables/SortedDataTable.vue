@@ -5,45 +5,45 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 export default {
   data() {
     return {
       fields: [
         {
-          key: 'Well',
+          key: "Well",
           sortable: true,
         },
         {
-          key: 'Cycle',
+          key: "Cycle",
           sortable: true,
         },
         {
-          key: 'RED',
+          key: "RED",
           sortable: true,
-          variant: 'danger',
+          variant: "danger",
         },
         {
-          key: 'BLUE',
+          key: "BLUE",
           sortable: true,
-          variant: 'info',
+          variant: "info",
         },
       ],
     }
   },
   computed: {
-    ...mapGetters('data', [
-      'rawData',
-      'sortedData',
-      'groupedbyWellData',
-      'extractedWells',
-      'rawAdjustedValues',
-      'adjustedValuesAverage',
-      'wellRows',
-      'wellCols',
-      'chunkNumber',
-      'repetitionCount',
-      'rawDataObject',
+    ...mapGetters("data", [
+      "rawData",
+      "sortedData",
+      "groupedbyWellData",
+      "extractedWells",
+      "rawAdjustedValues",
+      "adjustedValuesAverage",
+      "wellRows",
+      "wellCols",
+      "chunkNumber",
+      "repetitionCount",
+      "rawDataObject",
     ]),
   },
 }

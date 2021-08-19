@@ -29,6 +29,14 @@ export default () => ({
         ],
         type: "scatter",
       },
+      {
+        data: [
+          [1, 1],
+          [2, 2],
+          [3, 3],
+        ],
+        type: "scatter",
+      },
     ],
   },
 })

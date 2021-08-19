@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs"
-
+// 0 4,2 9,7 14,6 22 33,3 50 100
 // Inject $fitLinear(xVals, yVals) in Vue, context and store.
 export default ({ app }, inject) => {
   inject("fitLinear", (xVals, yVals) => {
