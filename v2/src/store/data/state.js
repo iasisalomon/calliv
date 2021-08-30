@@ -17,7 +17,7 @@ export default () => ({
   averageTableObject: [],
   matrixNative: [],
   matrixZero: [],
-  standardInputs: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
+  standardVals: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
   standardGraph: [],
   tableConfig: {
     series: [

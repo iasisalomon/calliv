@@ -65,18 +65,18 @@ export default {
       "matrixNative",
       "matrixZero",
       "getMinimumMeasureNoise",
-      "standardInputs",
+      "getStandardVals",
     ]),
   },
   methods: {
     formClick() {
       this.button = "Locked"
-      this.$store.dispatch("data" + "/standardInputs", this.validation)
+      this.$store.dispatch("data" + "/saveStandardVals", this.validation)
     },
     resetForm() {
       this.validation = []
       this.button = "Lock"
-      this.$store.dispatch("data" + "/standardInputs", this.validation)
+      this.$store.dispatch("data" + "/saveStandardVals", this.validation)
     },
     debouncedGetAnswer() {},
   },

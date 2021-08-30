@@ -53,8 +53,8 @@ export default {
   getMinimumMeasureNoise: (state) => {
     return state.getMinimumMeasureNoise
   },
-  standardInputs: (state) => {
-    return state.standardInputs
+  getStandardVals: (state) => {
+    return state.standardVals
   },
   standardGraph: (state) => {
     return state.standardGraph

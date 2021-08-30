@@ -62,7 +62,7 @@ export default {
   matrixNative: ({ commit, dispatch }) => {
     commit("CREATE_MATRIX_NATIVE")
     dispatch("matrixZero")
-    dispatch("standardInputs")
+    dispatch("saveStandardVals")
   },
   matrixZero: ({ commit, dispatch }) => {
     commit("CREATE_MATRIX_ZERO")
@@ -85,13 +85,20 @@ export default {
   obtainWellRows: ({ commit }) => {
     commit("OBTAIN_WELL_ROWS")
   },
-  standardInputs: ({ commit, dispatch }, payload) => {
-    commit("STANDARD_INPUTS", payload)
-    dispatch("plotData")
-    dispatch("standardGraph", payload)
+  saveStandardVals: ({ commit, dispatch }, payload) => {
+    commit("SAVE_STANDARD_VALS", payload)
+    // dispatch("plotData")
+    dispatch("saveStandardLectures", payload)
   },
-  standardGraph: ({ commit }, payload) => {
+  saveStandardLectures: ({ commit, dispatch }) => {
+    commit("SAVE_STANDARD_LECTURES")
+  },
+  standardGraph: ({ commit, dispatch }, payload) => {
     commit("STANDARD_GRAPH", payload)
+    dispatch("getLinear", payload)
+  },
+  getLinear: ({ commit }, payload) => {
+    commit("GET_LINEAR", payload)
   },
   plotData: ({ commit }, payload) => {
     commit("PLOT_DATA", payload)

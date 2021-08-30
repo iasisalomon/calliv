@@ -132,31 +132,31 @@ export default {
   GET_CHUNK_NUMBER(state) {
     state.chunkNumber = state.wellCols.length
   },
-  STANDARD_INPUTS(state, payload) {
+  SAVE_STANDARD_VALS(state, payload) {
+    // standard vals refers to x axis on graph
     if (payload) {
       payload = payload.map((el) => {
         return Number(el)
       })
-      localStorage.setItem("standardInputs", JSON.stringify(payload))
+      localStorage.setItem("standardVals", JSON.stringify(payload))
     } else {
-      payload = JSON.parse(localStorage.getItem("standardInputs"))
+      payload = JSON.parse(localStorage.getItem("standardVals"))
     }
-    state.standardInputs = payload
+    state.standardVals = payload
+  },
+  SAVE_STANDARD_LECTURES(state) {
+    // standard lectures refers to y axis on graph
+    // assigning values from the matrixZero corresponding to standard
+    const mtxZero = state.matrixZero
+    const standardLectures = mtxZero.map((el, index) => {
+      return el[1]
+    })
+    // saving yVals to localStorage
+    localStorage.setItem("standardLectures", JSON.stringify(standardLectures))
+    // saving xVals to localStorage
   },
   STANDARD_GRAPH(state, payload) {
     if (payload) {
-      payload = payload.map((el) => {
-        return Number(el)
-      })
-      // assigning values from the matrixZero corresponding to standard
-      let asd = state.matrixZero
-      asd = asd.map((el, index) => {
-        return el[1]
-      })
-      // setting [standard, value] to insert in graph
-      payload = payload.map((el, index) => {
-        return [el, asd[index]]
-      })
       localStorage.setItem("standardGraph", JSON.stringify(payload))
     } else {
       payload = JSON.parse(localStorage.getItem("standardGraph"))
@@ -164,6 +164,7 @@ export default {
     state.standardGraph = payload
     state.tableConfig.series[0].data = state.standardGraph
   },
+  GET_LINEAR(state, payload) {},
   PLOT_DATA(state) {
     state.chunkNumber = state.wellCols.length
   },
