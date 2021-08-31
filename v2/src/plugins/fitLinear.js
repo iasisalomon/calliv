@@ -7,9 +7,9 @@ export default ({ app }, inject) => {
     const M = tf.variable(tf.scalar(Math.random()))
     const B = tf.variable(tf.scalar(Math.random()))
     // optimizer constants
-    const LEARNING_RATE = 0.01
+    const LEARNING_RATE = 0.0001
     const OPTIMIZER = tf.train.sgd(LEARNING_RATE)
-    const ITERATIONS = process.env.ITERATIONS || 1000
+    const ITERATIONS = process.env.ITERATIONS || 999
     // predict function
     function predict(xVals) {
       return tf.tidy(function () {
@@ -26,7 +26,9 @@ export default ({ app }, inject) => {
     }
 
     const m = M.dataSync()[0]
+    console.log("m :>> ", m)
     const b = B.dataSync()[0]
+    console.log("b :>> ", b)
     return [m, b]
   })
 }

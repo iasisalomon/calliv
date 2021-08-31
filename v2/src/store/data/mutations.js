@@ -141,8 +141,13 @@ export default {
       localStorage.setItem("standardVals", JSON.stringify(payload))
     } else {
       payload = JSON.parse(localStorage.getItem("standardVals"))
+      if (payload) {
+        state.standardVals = payload
+      } else {
+        const standardVals = state.standardVals
+        localStorage.setItem("standardVals", JSON.stringify(standardVals))
+      }
     }
-    state.standardVals = payload
   },
   SAVE_STANDARD_LECTURES(state) {
     // standard lectures refers to y axis on graph
@@ -153,18 +158,30 @@ export default {
     })
     // saving yVals to localStorage
     localStorage.setItem("standardLectures", JSON.stringify(standardLectures))
-    // saving xVals to localStorage
+    state.standardLectures = standardLectures
   },
-  STANDARD_GRAPH(state, payload) {
-    if (payload) {
-      localStorage.setItem("standardGraph", JSON.stringify(payload))
-    } else {
-      payload = JSON.parse(localStorage.getItem("standardGraph"))
+  STANDARD_GRAPH(state) {
+    const standardLectures = state.standardLectures
+    const standardVals = state.standardVals
+    const standardGraph = []
+    if (standardLectures && standardVals) {
+      for (let i = 0; i < standardVals.length; i++) {
+        standardGraph.push([standardVals[i], standardLectures[i]])
+      }
+      state.standardGraph = standardGraph
+      state.tableConfig.series[0].data = standardGraph
+      localStorage.setItem("standardGraph", JSON.stringify(standardGraph))
     }
-    state.standardGraph = payload
-    state.tableConfig.series[0].data = state.standardGraph
   },
-  GET_LINEAR(state, payload) {},
+  FIT_LINEAR(state) {
+    const standardLectures = state.standardLectures
+    const standardVals = state.standardVals
+    if (standardLectures && standardVals) {
+      // 0 4,2 9,7 14,6 22 33,3 50 100
+      const fitLinear = this.$fitLinear(standardVals, standardLectures)
+      state.fitLinear = fitLinear
+    }
+  },
   PLOT_DATA(state) {
     state.chunkNumber = state.wellCols.length
   },

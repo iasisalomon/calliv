@@ -56,8 +56,14 @@ export default {
   getStandardVals: (state) => {
     return state.standardVals
   },
-  standardGraph: (state) => {
+  getStandardLectures: (state) => {
+    return state.standardLectures
+  },
+  getStandardGraph: (state) => {
     return state.standardGraph
+  },
+  getFitLinear: (state) => {
+    return state.fitLinear
   },
   tableConfig: (state) => {
     return state.tableConfig

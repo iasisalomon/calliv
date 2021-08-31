@@ -87,18 +87,19 @@ export default {
   },
   saveStandardVals: ({ commit, dispatch }, payload) => {
     commit("SAVE_STANDARD_VALS", payload)
-    // dispatch("plotData")
+    dispatch("plotData")
     dispatch("saveStandardLectures", payload)
   },
   saveStandardLectures: ({ commit, dispatch }) => {
     commit("SAVE_STANDARD_LECTURES")
+    dispatch("standardGraph")
   },
-  standardGraph: ({ commit, dispatch }, payload) => {
-    commit("STANDARD_GRAPH", payload)
-    dispatch("getLinear", payload)
+  standardGraph: ({ commit, dispatch }) => {
+    commit("STANDARD_GRAPH")
+    dispatch("fitLinear")
   },
-  getLinear: ({ commit }, payload) => {
-    commit("GET_LINEAR", payload)
+  fitLinear: ({ commit }) => {
+    commit("FIT_LINEAR")
   },
   plotData: ({ commit }, payload) => {
     commit("PLOT_DATA", payload)
