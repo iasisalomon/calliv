@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 export default {
   computed: {
-    ...mapGetters('data', ['rawData', 'tableHeader', 'rawDataObject']),
+    ...mapGetters("data", ["rawData", "tableHeader", "rawDataObject"]),
   },
 }
 </script>

@@ -182,7 +182,48 @@ export default {
       state.fitLinear = fitLinear
     }
   },
+  REGRESSION_GRAPH(state) {
+    const M = state.fitLinear[0]
+    const B = state.fitLinear[1]
+    const Y100 = M * 100 + B
+    const regressionGraph = [
+      [0, B],
+      [100, Y100],
+    ]
+    localStorage.setItem("regressionGraph", JSON.stringify(regressionGraph))
+    state.tableConfig.series[1].data = regressionGraph
+  },
   PLOT_DATA(state) {
     state.chunkNumber = state.wellCols.length
+  },
+  STORAGE_TO_STATE(state) {
+    const fileName = JSON.parse(localStorage.getItem("fileName"))
+    const rawData = JSON.parse(localStorage.getItem("rawData"))
+    const rawDataObject = JSON.parse(localStorage.getItem("rawDataObject"))
+    const regressionGraph = JSON.parse(localStorage.getItem("regressionGraph"))
+    const standardGraph = JSON.parse(localStorage.getItem("standardGraph"))
+    const standardLectures = JSON.parse(localStorage.getItem("standardLectures"))
+    const standardVals = JSON.parse(localStorage.getItem("standardVals"))
+    if (!state.filename) {
+      state.filename = fileName
+    }
+    if (!state.rawData) {
+      state.filename = rawData
+    }
+    if (!state.rawDataObject) {
+      state.filename = rawDataObject
+    }
+    if (!state.regressionGraph) {
+      state.filename = regressionGraph
+    }
+    if (!state.standardGraph) {
+      state.filename = standardGraph
+    }
+    if (!state.standardLectures) {
+      state.filename = standardLectures
+    }
+    if (!state.standardVals) {
+      state.filename = standardVals
+    }
   },
 }

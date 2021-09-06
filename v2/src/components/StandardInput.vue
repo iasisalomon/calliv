@@ -12,7 +12,6 @@
       <!-- This will only be shown if the preceding input has an invalid state -->
       <b-form-invalid-feedback id="input-live-feedback"> Enter a number greater or equal to 0 </b-form-invalid-feedback>
     </div>
-
     <div class="col mx-0 px-0 align-self-top text-right" style="max-width: 75px">
       <b-button class="mr-1" type="submit" variant="primary" :disabled="button === 'Locked'" @click="formClick">
         {{ button }}

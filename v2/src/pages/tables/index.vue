@@ -8,15 +8,15 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import AverageDataTable from '@/components/tables/AverageDataTable'
-import SortedDataTable from '@/components/tables/SortedDataTable'
-import TableNav from '@/components/tables/TableNav'
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
+import Header from "@/components/Header"
+import AverageDataTable from "@/components/tables/AverageDataTable"
+import SortedDataTable from "@/components/tables/SortedDataTable"
+import TableNav from "@/components/tables/TableNav"
 export default {
   components: { Header, SortedDataTable, AverageDataTable, TableNav },
   computed: {
-    ...mapGetters('tables', ['activeTableNav']),
+    ...mapGetters("tables", ["activeTableNav"]),
   },
   created() {
     this.localGetData()
@@ -24,17 +24,17 @@ export default {
   methods: {
     localGetData() {
       if (process.browser) {
-        const lsDNA = localStorage.getItem('rawData')
+        const lsDNA = localStorage.getItem("rawData")
         const payload = JSON.parse(lsDNA)
-        this.$store.dispatch('data/changeRawData', payload)
+        this.$store.dispatch("data/changeRawData", payload)
 
-        const lsAOO = localStorage.getItem('rawDataObject')
+        const lsAOO = localStorage.getItem("rawDataObject")
         const payloadObject = JSON.parse(lsAOO)
-        this.$store.dispatch('data/changeRawDataObject', payloadObject)
+        this.$store.dispatch("data/changeRawDataObject", payloadObject)
 
-        const name = localStorage.getItem('rawDataObject')
+        const name = localStorage.getItem("rawDataObject")
         const fileName = JSON.parse(name)
-        this.$store.dispatch('data/changeFileName', fileName)
+        this.$store.dispatch("data/changeFileName", fileName)
       }
     },
   },

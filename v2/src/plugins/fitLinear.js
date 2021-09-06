@@ -26,9 +26,7 @@ export default ({ app }, inject) => {
     }
 
     const m = M.dataSync()[0]
-    console.log("m :>> ", m)
     const b = B.dataSync()[0]
-    console.log("b :>> ", b)
     return [m, b]
   })
 }

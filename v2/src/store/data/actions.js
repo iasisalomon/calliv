@@ -96,12 +96,18 @@ export default {
   },
   standardGraph: ({ commit, dispatch }) => {
     commit("STANDARD_GRAPH")
-    dispatch("fitLinear")
   },
-  fitLinear: ({ commit }) => {
+  fitLinear: ({ commit, dispatch }) => {
     commit("FIT_LINEAR")
+    dispatch("regressionGraph")
+  },
+  regressionGraph: ({ commit }) => {
+    commit("REGRESSION_GRAPH")
   },
   plotData: ({ commit }, payload) => {
     commit("PLOT_DATA", payload)
+  },
+  storageToState: ({ commit }) => {
+    commit("STORAGE_TO_STATE")
   },
 }

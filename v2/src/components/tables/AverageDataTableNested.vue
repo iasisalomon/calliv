@@ -7,9 +7,7 @@
       <thead>
         <tr>
           <th scope="col">Well</th>
-          <th v-for="header in repetitionCount" :key="header" scope="col">
-            Lecture {{ header }}
-          </th>
+          <th v-for="header in repetitionCount" :key="header" scope="col">Lecture {{ header }}</th>
           <th scope="col">Average</th>
         </tr>
       </thead>
@@ -32,23 +30,23 @@
 //     <td v-for="(obj, i) in tableConfig" :key="i">{{ row[i] }}</td>
 //   </tr>
 // </tbody>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex"
 export default {
   computed: {
-    ...mapGetters('data', [
-      'rawData',
-      'tableHeader',
-      'sortedData',
-      'groupedbyWellData',
-      'extractedWells',
-      'rawAdjustedValues',
-      'adjustedValuesAverage',
-      'wellRows',
-      'wellCols',
-      'chunkNumber',
-      'repetitionCount',
-      'rawDataObject',
-      'averageTableObject',
+    ...mapGetters("data", [
+      "rawData",
+      "tableHeader",
+      "sortedData",
+      "groupedbyWellData",
+      "extractedWells",
+      "rawAdjustedValues",
+      "adjustedValuesAverage",
+      "wellRows",
+      "wellCols",
+      "chunkNumber",
+      "repetitionCount",
+      "rawDataObject",
+      "averageTableObject",
     ]),
   },
 }

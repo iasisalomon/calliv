@@ -37,7 +37,7 @@ export default () => ({
           [2, 2],
           [3, 3],
         ],
-        type: "scatter",
+        type: "line",
       },
     ],
   },

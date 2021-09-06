@@ -39,7 +39,7 @@ export default {}
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 .container-fluid {
   margin: 0 auto;
   min-height: 100vh;
@@ -47,12 +47,12 @@ export default {}
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url('@/static/images/main.jpg');
+  background-image: url("@/static/images/main.jpg");
   background-size: auto;
 }
 
 h2 {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 40px;
 }
 
