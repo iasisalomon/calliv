@@ -16,7 +16,7 @@
 export default {
   methods: {
     getLinear() {
-      this.$store.dispatch("data" + "/saveStandardVals", this.validation)
+      this.$store.dispatch("data" + "/fitLinear")
     },
     getCuadratic() {
       this.$store.dispatch("data" + "/saveStandardVals", this.validation)
