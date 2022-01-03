@@ -20,6 +20,7 @@ export default {
   plugins: [
     { src: "~/plugins/papa-parse.js", mode: "client" },
     { src: "~/plugins/highcharts.js", mode: "client" },
+    { src: "~/plugins/persistedState.js", mode: "client" },
     { src: "~/plugins/lodash.js" },
     { src: "~/plugins/fitLinear.js" },
   ],
@@ -28,10 +29,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    "@nuxtjs/eslint-module",
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -65,4 +63,4 @@ export default {
   build: {},
   // SourceDir: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-srcdir
   srcDir: "src/",
-}
+};
