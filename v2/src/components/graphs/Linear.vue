@@ -1,6 +1,13 @@
 <template>
   <div class="row justify-content-center">
-    <highcharts :options="tableConfig"></highcharts>
+    <div class="col-3">
+      <!-- {{ getStandardVals }} <br />
+      {{ getStandardLectures }} <br />
+      {{ getStandardGraph }} <br /> -->
+      {{ tableConfig }} <br />
+      linear regression --> {{ getFitLinear }} <br />
+    </div>
+    <div class="col-9"><highcharts :options="tableConfig"></highcharts></div>
   </div>
 </template>
 
