@@ -144,7 +144,7 @@ export default {
   },
   SAVE_STANDARD_VALS(state, payload) {
     // standard vals refers to x axis on graph
-    if (payload !== undefined) {
+    if (payload !== undefined && payload !== null) {
       payload = payload.map((el) => {
         return Number(el);
       });

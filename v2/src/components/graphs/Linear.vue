@@ -1,13 +1,6 @@
 <template>
   <div class="row justify-content-center">
-    <div class="col-3">
-      <!-- {{ getStandardVals }} <br />
-      {{ getStandardLectures }} <br />
-      {{ getStandardGraph }} <br /> -->
-      {{ tableConfig }} <br />
-      linear regression --> {{ getFitLinear }} <br />
-    </div>
-    <div class="col-9"><highcharts :options="tableConfig"></highcharts></div>
+    <div class="col-12"><highcharts :options="tableConfig"></highcharts></div>
   </div>
 </template>
 
@@ -25,9 +18,6 @@ export default {
       "tableConfig",
     ]),
   },
-  // beforeCreate() {
-  //   this.$store.dispatch("data" + "/storeToState")
-  // },
 };
 </script>
 

@@ -1,24 +1,26 @@
 <template>
-  <div class="row align-content-center justify-content-between m-0 p-0 py-3">
-    {{ getStandardVals }}
+  <form class="row align-content-center justify-content-between m-0 p-0 py-3">
     <div
       v-for="(col, index) in wellRows"
       :key="index"
       class="col m-0 mr-2 p-0 align-items-center text-center"
       role="group"
     >
-      <b-form-input
-        :id="'input-live' + col"
-        v-model="validation[index]"
-        :state="validationState[index]"
-        :placeholder="col"
-        :disabled="button == 'Locked'"
-        trim
-      ></b-form-input>
-      <!-- This will only be shown if the preceding input has an invalid state -->
-      <b-form-invalid-feedback id="input-live-feedback">
+      <b-input-group>
+        <template #prepend>
+          <b-input-group-text>{{ col }}</b-input-group-text>
+        </template>
+        <b-form-input
+          :id="'input-live' + col"
+          v-model="validation[index]"
+          :placeholder="validation[index]"
+          :disabled="standardIsLocked"
+        ></b-form-input>
+        <!-- This will only be shown if the preceding input has an invalid state -->
+        <!-- <b-form-invalid-feedback id="input-live-feedback">
         Enter a number greater or equal to 0
-      </b-form-invalid-feedback>
+      </b-form-invalid-feedback> -->
+      </b-input-group>
     </div>
     <div
       class="col mx-0 px-0 align-self-top text-right"
@@ -28,21 +30,29 @@
         class="mr-1"
         type="submit"
         variant="primary"
-        :disabled="button === 'Locked'"
+        :disabled="standardIsLocked"
         @click="formClick"
       >
-        {{ button }}
+        {{ buttonText }}
       </b-button>
     </div>
     <div
       class="col mx-0 px-0 align-self-top text-right"
       style="max-width: 75px"
     >
-      <b-button class="ml-1" type="reset" variant="danger" @click="resetForm"
-        >Reset</b-button
-      >
+      <b-button class="ml-1" type="reset" variant="danger" @click="resetForm">
+        Reset
+      </b-button>
     </div>
-  </div>
+    <div
+      class="col mx-0 px-0 align-self-top text-right"
+      style="max-width: 75px"
+    >
+      <b-button class="ml-1" type="reset" variant="success" @click="fitGraph">
+        Graph
+      </b-button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -51,23 +61,30 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      validation: [],
-      button: "Lock",
+      validation: [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100],
     };
   },
   computed: {
     validationState() {
       return this.validation.map((el) => {
-        el = el.replace(/,/g, ".");
-        el = Number(el);
-        if (el === null) {
-          return null;
-        } else if (el >= 0) {
-          return true;
-        } else {
-          return false;
-        }
+        console.log(el);
+        // el = el.replace(/,/g, ".");
+        // el = Number(el);
+        // if (el === null) {
+        //   return null;
+        // } else if (el >= 0) {
+        //   return true;
+        // } else {
+        //   return false;
+        // }
       });
+    },
+    buttonText() {
+      if (this.standardIsLocked) {
+        return "Locked";
+      } else {
+        return "Lock";
+      }
     },
     ...mapGetters("data", [
       "rawData",
@@ -88,18 +105,24 @@ export default {
       "getMinimumMeasureNoise",
       "getStandardVals",
     ]),
+    ...mapGetters("tables", ["standardIsLocked"]),
   },
   methods: {
     formClick() {
-      this.button = "Locked";
       this.$store.dispatch("data" + "/saveStandardVals", this.validation);
+      this.$store.dispatch("tables" + "/standardLock", true);
+    },
+    fitGraph() {
+      this.$store.dispatch("data" + "/fitLinear");
     },
     resetForm() {
-      this.validation = [];
-      this.button = "Lock";
-      this.$store.dispatch("data" + "/saveStandardVals", this.validation);
+      this.$store.dispatch("tables" + "/standardLock", false);
+      this.$store.dispatch(
+        "data" + "/saveStandardVals",
+        [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100]
+      );
+      this.validation = [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100];
     },
-    debouncedGetAnswer() {},
   },
 };
 </script>
