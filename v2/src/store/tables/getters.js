@@ -5,4 +5,7 @@ export default {
   standardIsLocked: (state) => {
     return state.standardIsLocked;
   },
+  regressionIsLocked: (state) => {
+    return state.regressionIsLocked;
+  },
 };

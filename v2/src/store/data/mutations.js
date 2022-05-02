@@ -34,6 +34,10 @@ export default {
   CLEAR_RAW_DATA_OBJECT(state) {
     state.rawDataObject = [];
   },
+  CLEAR_FIT(state) {
+    state.fitLinear = [];
+    state.tableConfig.series[1].data = [];
+  },
   SORT_DATA(state) {
     state.sortedData = state.rawData.sort();
   },

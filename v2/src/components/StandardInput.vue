@@ -36,21 +36,24 @@
         {{ buttonText }}
       </b-button>
     </div>
+
     <div
       class="col mx-0 px-0 align-self-top text-right"
       style="max-width: 75px"
     >
-      <b-button class="ml-1" type="reset" variant="danger" @click="resetForm">
-        Reset
+      <b-button
+        variant="success"
+        :disabled="regressionIsLocked && standardIsLocked"
+        @click="fitGraph"
+      >
+        Graph
       </b-button>
     </div>
     <div
       class="col mx-0 px-0 align-self-top text-right"
       style="max-width: 75px"
     >
-      <b-button class="ml-1" type="reset" variant="success" @click="fitGraph">
-        Graph
-      </b-button>
+      <b-button variant="danger" @click="resetForm"> Reset </b-button>
     </div>
   </form>
 </template>
@@ -104,8 +107,9 @@ export default {
       "matrixZero",
       "getMinimumMeasureNoise",
       "getStandardVals",
+      "clearFit",
     ]),
-    ...mapGetters("tables", ["standardIsLocked"]),
+    ...mapGetters("tables", ["standardIsLocked", "regressionIsLocked"]),
   },
   methods: {
     formClick() {
@@ -113,10 +117,17 @@ export default {
       this.$store.dispatch("tables" + "/standardLock", true);
     },
     fitGraph() {
-      this.$store.dispatch("data" + "/fitLinear");
+      if (this.standardIsLocked) {
+        this.$store.dispatch("data" + "/fitLinear");
+        this.$store.dispatch("tables" + "/regressionLock", true);
+      } else {
+        alert("Please lock the standard first");
+      }
     },
     resetForm() {
       this.$store.dispatch("tables" + "/standardLock", false);
+      this.$store.dispatch("tables" + "/regressionLock", false);
+      this.$store.dispatch("data" + "/clearFit");
       this.$store.dispatch(
         "data" + "/saveStandardVals",
         [0, 4.2, 9.7, 14.6, 22, 33.3, 50, 100]

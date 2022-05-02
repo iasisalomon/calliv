@@ -5,4 +5,7 @@ export default {
   STANDARD_LOCK(state, payload) {
     state.standardIsLocked = payload;
   },
+  REGRESSION_LOCK(state, payload) {
+    state.regressionIsLocked = payload;
+  },
 };
